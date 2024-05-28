@@ -1,0 +1,20 @@
+{
+  "name": "bidding-site",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "concurrently \"cd ./server && npm run dev\" \"cd ./client && npm run dev\"",
+    "client:build": "cd ./client && npm run build",
+    "install:server": "cd ./server && npm i",
+    "install:client": "cd ./install && npm i",
+    "install": "npm run install:server",
+    "start": "cd ./server && npm start"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  }
+}
