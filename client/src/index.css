@@ -263,6 +263,14 @@ form .toggle-switch.toggle {
   background-color: beige;
 }
 
+#contact-me input, select, textarea{
+  color: #213547;
+}
+
+#contact-me textarea:focus, input:focus {
+  color: #213547;
+}
+
 /* FOOTER STYLES */
 footer {
   background-color: #3b3b3b;
