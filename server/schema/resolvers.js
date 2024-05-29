@@ -1,6 +1,7 @@
 const { User, Item, Bid } = require('../models');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
+// const cookieParser = require('cookie-parser');
 require('dotenv').config();
 
 const resolvers = {
@@ -17,7 +18,8 @@ const resolvers = {
       const user = new User({ username, email, password });
       await user.save();
       const token = user.generateAuthToken();
-      res.cookie('token', token, { httpOnly: true, secure: process.env.NODE_ENV === 'production' });
+      // console.log(token);
+      // res.cookie('token', token, { httpOnly: true, secure: process.env.NODE_ENV === 'production' });
       return { user, token };
     },
     login: async (_, { email, password }) => {
@@ -26,7 +28,8 @@ const resolvers = {
         throw new Error('Invalid email or password');
       }
       const token = user.generateAuthToken();
-      res.cookie('token', token, { httpOnly: true, secure: process.env.NODE_ENV === 'production' });
+      // console.log(token);
+      // res.cookie('token', token, { httpOnly: true, secure: process.env.NODE_ENV === 'production' });
       return { user, token };
     },
     createItem: async (_, { userId, name, description, startingBid }) => {
