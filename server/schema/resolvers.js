@@ -1,5 +1,8 @@
-const { User, Item, Bid } = require('../models'); // Adjust the path as necessary
+const { User, Item, Bid } = require('../models');
 const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
+// const cookieParser = require('cookie-parser');
+require('dotenv').config();
 
 const resolvers = {
   Query: {
@@ -12,10 +15,22 @@ const resolvers = {
   },
   Mutation: {
     createUser: async (_, { username, email, password }) => {
-      const hashedPassword = await bcrypt.hash(password, 10);
-      const user = new User({ username, email, password: hashedPassword });
+      const user = new User({ username, email, password });
       await user.save();
-      return user;
+      const token = user.generateAuthToken();
+      // console.log(token);
+      // res.cookie('token', token, { httpOnly: true, secure: process.env.NODE_ENV === 'production' });
+      return { user, token };
+    },
+    login: async (_, { email, password }) => {
+      const user = await User.findOne({ email });
+      if (!user || !(await user.validatePass(password))) {
+        throw new Error('Invalid email or password');
+      }
+      const token = user.generateAuthToken();
+      // console.log(token);
+      // res.cookie('token', token, { httpOnly: true, secure: process.env.NODE_ENV === 'production' });
+      return { user, token };
     },
     createItem: async (_, { userId, name, description, startingBid }) => {
       const item = new Item({

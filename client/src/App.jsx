@@ -12,6 +12,19 @@ function App() {
   const [user, setUser] = useState(null)
 
 
+  // useEffect(() => {
+  //     axios.get('/api/auth')
+  //         .then(res => {
+  //             setUser(res.data.user)
+  //         })
+  // }, [])
+
+  const logoutUser = async () => {
+      // await axios.get('/api/auth/logout')
+
+      // setUser(null)
+  }
+
 
   return (
     <>
