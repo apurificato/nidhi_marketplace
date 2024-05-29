@@ -12,8 +12,7 @@ const resolvers = {
   },
   Mutation: {
     createUser: async (_, { username, email, password }) => {
-      const hashedPassword = await bcrypt.hash(password, 10);
-      const user = new User({ username, email, password: hashedPassword });
+      const user = new User({ username, email, password });
       await user.save();
       return user;
     },
