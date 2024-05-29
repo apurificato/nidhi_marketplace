@@ -4,8 +4,8 @@
   font-weight: 400;
 
   color-scheme: light dark;
-  color: #3b3b3b;
-  background-color: aliceblue;
+  color: rgba(255, 255, 255, 0.87);
+  background-color: #242424;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -13,139 +13,26 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* SITE RESETS */
-html, body {
-  padding: 0;
-  margin: 0;
-}
-
-#root {
-  padding: 0;
-  margin: 0 auto;
-  max-width: 100%;
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  text-align: center;
-}
-
-main {
-  flex: 1;
-}
-
 a {
   font-weight: 500;
-  color: #00d8ff;
+  color: #646cff;
   text-decoration: inherit;
 }
 a:hover {
-  color: #00d8ff;
+  color: #535bf2;
+}
+
+body {
+  margin: 0;
+  display: flex;
+  place-items: center;
+  min-width: 320px;
+  min-height: 100vh;
 }
 
 h1 {
   font-size: 3.2em;
   line-height: 1.1;
-}
-
-h2 {
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: 42px;
-  color:#3b3b3b;
-}
-
-h3 {
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: 30px;
-}
-
-h5 {
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: 16px;
-  color:#3b3b3b;
-}
-
-/* GLOBAL CUSTOM STYLES */
-header {
-  padding: 0 3%;
-  background-color: #3b3b3b;
-}
-
-header .brand {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.brand img {
-  height: 60px;
-  padding: 20px;
-}
-
-header nav a {
-  justify-content: space-betw;
-  padding-left: 25px;
-  /* color: #7ed957; */
-  color: aliceblue;
-  font-size: 18px;
-  font-family: Arial, Helvetica, sans-serif;
-  text-decoration: none;
-}
-
-header nav a:hover {
-  color: #00d8ff;
-}
-
-header nav a.active {
-  color: #00d8ff;
-}
-
-header nav button {
-  margin-left: 20px;
-}
-
-/* HERO SECTION (Custom Styles) */
-section.hero {
-  background-image: url("/Hero-image.png");
-  background-size: cover;
-  background-repeat: no-repeat;
-  width: 100%;
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-
-.title-section {
-  padding: 0 200px;
-  overflow: auto;
-}
-
-.title-section h1 {
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: 60px;
-  color: aliceblue;
-  text-shadow: #213547 2px 0 10px;
-}
-
-#hero-button {
-  color: #3b3b3b;
-}
-
-
-/* ABOUT ME PAGE STYLES */
-#about {
-  padding: 50px 0 100px;
-}
-
-#logo-image {
-  width: 100px;
-}
-
-#about p {
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: 16px;
-  padding: 10px 50px;
-  text-align: left;
 }
 
 button {
@@ -160,8 +47,7 @@ button {
   transition: border-color 0.25s;
 }
 button:hover {
-  border-color: #00d8ff;
-  color: #00d8ff;
+  border-color: #646cff;
 }
 button:focus,
 button:focus-visible {
@@ -179,111 +65,4 @@ button:focus-visible {
   button {
     background-color: #f9f9f9;
   }
-}
-
-
-/* CONTACT ME PAGE STYLES */
-#contact-me {
-  padding: 50px 0 100px;
-  justify-content: center;
-}
-
-#contact-me h5 {
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: 16px;
-  color: #213547;
-}
-
-#form-section {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
-#contact-me form {
-  width: 450px;
-  display: flex;
-  flex-direction: column;
-  /* justify-content: center; */
-  /* align-items: center; */
-  padding: 1em;
-  border: 1px solid #213547;
-  border-radius: 1em;
-}
-
-#contact-me form > * {
-  padding: 5px 10px;
-  margin-bottom: 8px;
-}
-
-.auth-toggle-wrap {
-  display: flex;
-  align-items: center;
-}
-
-form .toggle-bar {
-  width: 75px;
-  height: 28px;
-  border-radius: 30px;
-  background:#1a1a1a;
-  margin: 0 8px;
-  position: relative;
-  cursor: pointer;
-}
-
-form .toggle-switch {
-  position: absolute;
-  content: '';
-  top: 2px;
-  left: 4px;
-  width: 24px;
-  height: 24px;
-  border-radius: 50%;
-  background: #00d8ff;
-  transition: left .3s;
-}
-
-form .toggle-switch.toggle {
-  left: 47px;
-
-}
-
-#contact-me form .button {
-  padding-top: 20px;
-}
-
-#contact-me form label {
-  text-align: left;
-}
-
-#contact-me form input, textarea {
-  font-family: Arial, Helvetica, sans-serif;
-  border: 1px solid #213547;
-  background-color: beige;
-}
-
-#contact-me input, select, textarea{
-  color: #213547;
-}
-
-#contact-me textarea:focus, input:focus {
-  color: #213547;
-}
-
-/* FOOTER STYLES */
-footer {
-  background-color: #3b3b3b;
-  color: aliceblue;
-}
-
-footer .brand {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  align-items: center;
-}
-
-a .footer-logo-item {
-  height: 30px;
 }

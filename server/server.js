@@ -1,9 +1,65 @@
 require('dotenv').config()
 const express = require('express')
 const path = require('path')
+const { ApolloServer, gql } = require('apollo-server-express')
 
 const app = express()
 const PORT = process.env.PORT || 6969
+
+
+
+// graphql schema
+const typeDefs = gql`
+
+type Product {
+    _id: ID
+    name: String,
+    username: User,
+    bid: Bid,
+},
+type Bid {
+    _id: ID
+    username: User,
+    bid: Int,
+    product: Product
+},
+type User {
+    username: String,
+    _id: ID
+    email: String,
+    password: String,
+    bid: [Bid]
+},
+type Query {
+    hello: String,
+    someMethod: Int,
+    getUser: User
+}
+`
+
+// schema functions
+const resolvers = {
+    Query: {
+        hello() {
+          return  "Hello World"
+        },
+        getUser() {
+            return {
+                _id: '123',
+                username: 'cenzo',
+                email: 'email@test.com',
+                password: "password1"
+            
+            }
+        }
+
+    }
+    // Mutation: {
+       
+    //     } 
+    }
+
+
 
 const cookieParser = require('cookie-parser')
 
@@ -24,6 +80,25 @@ if (process.env.PORT) {
     })
 }
 
-client.once('open', () => {
-    app.listen(PORT, () => console.log('Server started on port', PORT))
-})
+
+// mongoose + ApolloServer initialization 
+async function startServer() {
+    const server = new ApolloServer({typeDefs, resolvers})
+    
+    await server.start()
+
+    server.applyMiddleware({ app})
+
+    client.once('open', () => {
+    
+        app.listen(PORT, () => {
+            
+        console.log('Server started on port', PORT)
+    
+        console.log('GraphQL ready at', server.graphqlPath)
+    })
+    })
+}
+
+
+startServer()

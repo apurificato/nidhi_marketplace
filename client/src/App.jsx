@@ -1,66 +1,33 @@
-
-import { NavLink } from 'react-router-dom'
-import {Routes, Route} from 'react-router-dom'
-import { useEffect, useState} from 'react'
-import axios from 'axios'
-
-import Footer from './components/Footer'
-
-import Home from './pages/Home'
-import About from './pages/About'
-import AuthForm from './pages/AuthForm'
-
+import { useState } from 'react'
+import reactLogo from './assets/react.svg'
+import viteLogo from '/vite.svg'
+import './App.css'
 
 function App() {
-  const [user, setUser] = useState(null)
-
-  useEffect(() => {
-      axios.get('/api/auth')
-          .then(res => {
-              setUser(res.data.user)
-          })
-  }, [])
-
-  const logoutUser = async () => {
-      await axios.get('/api/auth/logout')
-
-      setUser(null)
-  }
+  const [count, setCount] = useState(0)
 
   return (
     <>
-    <header>
-      <div className='brand'>
-        <NavLink to='/'>
-            <img src='react.svg'></img>
-        </NavLink>
-
-        <nav>
-            <NavLink to="/about">About Us</NavLink>
-            {user ? (
-                <button onClick={logoutUser}>Logout</button>
-            ) : (
-                <NavLink to="/auth">Login/Register</NavLink>
-            )}
-        </nav>
+      <div>
+        <a href="https://vitejs.dev" target="_blank">
+          <img src={viteLogo} className="logo" alt="Vite logo" />
+        </a>
+        <a href="https://react.dev" target="_blank">
+          <img src={reactLogo} className="logo react" alt="React logo" />
+        </a>
       </div>
-    </header>
-
-    <main>
-      <div className='content'>
-
-      <Routes>
-        <Route path="/" element={<Home user={user}/>} />
-        <Route path="/about" element={<About />} />
-        <Route path="/auth" element={<AuthForm setUser={setUser}/>} />
-      </Routes>
-
+      <h1>Vite + React</h1>
+      <div className="card">
+        <button onClick={() => setCount((count) => count + 1)}>
+          count is {count}
+        </button>
+        <p>
+          Edit <code>src/App.jsx</code> and save to test HMR
+        </p>
       </div>
-    
-    </main>
-
-    <Footer />
-
+      <p className="read-the-docs">
+        Click on the Vite and React logos to learn more
+      </p>
     </>
   )
 }
