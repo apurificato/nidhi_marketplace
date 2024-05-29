@@ -10,19 +10,25 @@ function validateEmail(value) {
 const userSchema = new Schema({
   username: {
     type: String,
-    unique: true
+    unique: true, 
+    required: true 
   },
 
   email: {
     type: String,
     unique: true,
-    validate: [validateEmail, 'You must enter a valid email address']
+    validate: [validateEmail, 'You must enter a valid email address'], 
+    required: true 
   },
 
   password: {
     type: String,
-    minLength: [6, 'Your password must be at least 6 characters in length']
-  }
+    minLength: [6, 'Your password must be at least 6 characters in length'], 
+    required: true 
+  },
+  itemsForSale: [{ type: Schema.Types.ObjectId, ref: 'Item' }],
+  bids: [{ type: Schema.Types.ObjectId, ref: 'Bid' }],
+  itemsWon: [{ type: Schema.Types.ObjectId, ref: 'Item' }]
 })
 
 userSchema.methods.toJSON = function () {

@@ -5,6 +5,11 @@ const path = require('path')
 const app = express()
 const PORT = process.env.PORT || 6969
 
+const { ApolloServer } = require('apollo-server-express')
+
+const resolvers = require('./schema/resolvers')
+const typeDefs = require('./schema/typeDefs')
+
 const cookieParser = require('cookie-parser')
 
 const client = require('./config/client')
@@ -24,6 +29,20 @@ if (process.env.PORT) {
     })
 }
 
+async function startServer() {
+    const server = new ApolloServer({ typeDefs, resolvers })
+  
+    await server.start()
+  
+    server.applyMiddleware({ app })
+  
+    app.listen(PORT, () => {
+      console.log(`🚀 Express Server ready at`, PORT)
+  
+      console.log('GraphQL ready at', server.graphqlPath)
+    })
+  }
+
 client.once('open', () => {
-    app.listen(PORT, () => console.log('Server started on port', PORT))
+    startServer()
 })
