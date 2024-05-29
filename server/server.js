@@ -1,6 +1,7 @@
 require('dotenv').config()
 const express = require('express')
 const path = require('path')
+const authMiddleware = require('./middleware/authMiddleware.jsx')
 
 const app = express()
 const PORT = process.env.PORT || 6969
@@ -19,7 +20,8 @@ const auth_routes = require('./routes/auth_routes')
 app.use(express.json())
 app.use(cookieParser())
 
-app.use('/api/auth', auth_routes)
+app.use(authMiddleware)
+// app.use('/api/auth', auth_routes)
 
 if (process.env.PORT) {
     app.use(express.static('../client/dist'))

@@ -1,6 +1,8 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
+import { CREATE_USER, LOGIN_USER } from '../graphql/mutations'
+import { useMutation } from '@apollo/client'
 
 const initialFormState = {
     username: '',
@@ -10,9 +12,16 @@ const initialFormState = {
 
 }
 
+
 function AuthForm(props) {
     const [formData, setFormData] = useState(initialFormState)
     const navigate = useNavigate()
+    const [createUser]= useMutation(CREATE_USER,{
+        variables: formData
+    })
+    const [loginUser]= useMutation(LOGIN_USER,{
+        variables: formData
+    })
 
     const handleInputChange = (event) => {
         const input = event.target.name
@@ -25,15 +34,14 @@ function AuthForm(props) {
 
     const handleSubmit = async (event) => {
         event.preventDefault()
+        
+        let data 
+        formData.isLogin? data= await loginUser() : data = await createUser()
 
-        const url = `/api/auth/${formData.isLogin ? 'login' : 'register'}`
 
-        const res = await axios.post(url, formData)
+        console.log(data)
 
-        props.setUser(res.data)
-        navigate('/')
-
-        // setFormData({...initialFormState})
+        setFormData({...initialFormState})
     }
 
     const toggleAuthType = () => {
