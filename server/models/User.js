@@ -1,5 +1,7 @@
 const { model, Schema } = require('mongoose');
 const { hash, compare } = require('bcrypt');
+const jwt = require('jsonwebtoken');
+require('dotenv').config();
 
 function validateEmail(value) {
   const exp = new RegExp(/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g);
@@ -38,6 +40,12 @@ userSchema.methods.toJSON = function () {
 // Validate password
 userSchema.methods.validatePass = async function (formPassword) {
   return await compare(formPassword, this.password);
+};
+
+// Generate JWT
+userSchema.methods.generateAuthToken = function () {
+  const token = jwt.sign({ id: this._id, username: this.username }, process.env.JWT_SECRET, { expiresIn: '1h' });
+  return token;
 };
 
 // Hash password before saving the user

@@ -1,5 +1,7 @@
-const { User, Item, Bid } = require('../models'); // Adjust the path as necessary
+const { User, Item, Bid } = require('../models');
 const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
+require('dotenv').config();
 
 const resolvers = {
   Query: {
@@ -14,7 +16,16 @@ const resolvers = {
     createUser: async (_, { username, email, password }) => {
       const user = new User({ username, email, password });
       await user.save();
-      return user;
+      const token = user.generateAuthToken();
+      return { user, token };
+    },
+    login: async (_, { email, password }) => {
+      const user = await User.findOne({ email });
+      if (!user || !(await user.validatePass(password))) {
+        throw new Error('Invalid email or password');
+      }
+      const token = user.generateAuthToken();
+      return { user, token };
     },
     createItem: async (_, { userId, name, description, startingBid }) => {
       const item = new Item({
