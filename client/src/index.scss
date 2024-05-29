@@ -13,6 +13,8 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+// @import 'variables'; @import 'mixins';
+
 /* SITE RESETS */
 html, body {
   padding: 0;
@@ -287,3 +289,163 @@ footer .brand {
 a .footer-logo-item {
   height: 30px;
 }
+
+// NAVBAR
+
+$primary-color: #f69999;
+$text-color: #fff;
+$hover-color: #00d8ff;
+$breakpoint: 768px;
+
+.navbar-header {
+  background-color: $primary-color;
+  padding: 1rem;
+
+  .brand {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .logo-link {
+      display: flex;
+      align-items: center;
+    }
+
+    .logo {
+      width: 50px;
+      height: 50px;
+    }
+
+    .navbar {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      transition: max-height 0.3s ease;
+      overflow: hidden;
+
+      .nav-link {
+        color: $text-color;
+        text-decoration: none;
+        font-size: 1.2rem;
+        padding: 0.5rem 1rem;
+        transition: background-color 0.3s ease;
+
+        &:hover {
+          background-color: $hover-color;
+          border-radius: 5px;
+        }
+      }
+
+      .nav-button {
+        background-color: transparent;
+        border: none;
+        color: $text-color;
+        font-size: 1.2rem;
+        padding: 0.5rem 1rem;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+
+        &:hover {
+          background-color: $hover-color;
+          border-radius: 5px;
+        }
+      }
+    }
+
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      justify-content: space-around;
+      width: 30px;
+      height: 30px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0;
+
+      .hamburger-line {
+        width: 100%;
+        height: 3px;
+        background-color: $text-color;
+        border-radius: 5px;
+      }
+    }
+  }
+}
+
+@media (max-width: $breakpoint) {
+  .brand {
+    flex-direction: column;
+    align-items: flex-start;
+
+    .navbar {
+      flex-direction: column;
+      align-items: flex-start;
+      max-height: 0;
+      overflow: hidden;
+      width: 100%;
+
+      .nav-link,
+      .nav-button {
+        width: 100%;
+        text-align: left;
+        padding: 1rem;
+        margin: 0;
+      }
+    }
+
+    .hamburger {
+      display: flex;
+    }
+
+    .navbar.open {
+      max-height: 300px; // Adjust as needed for content
+    }
+  }
+}
+
+
+// DASHBOARD STYLES
+
+.dash-container {
+   height: 100vh;
+   display: flex;
+   flex-direction: column;
+   justify-content: flex-start;
+   align-items: flex-start;
+  padding: 10px;
+}
+
+.user-info {
+  height: 20%;
+  width: 25%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #00d8ff;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+ }
+
+ .categories-table {
+  width: 25%; /* Make it take the full width */
+  display: flex;
+  flex-direction: column;
+  gap: 10px; /* Add some space between the links */
+  padding: 15px 0;
+}
+
+.categories-table a {
+  text-decoration: none;
+  color: #000;
+  padding: 10px;
+  background-color: #f69999;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+.categories-table a:hover {
+  background-color: #00d8ff;
+}
+

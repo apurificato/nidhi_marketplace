@@ -3,6 +3,7 @@ const express = require('express')
 const path = require('path')
 const authMiddleware = require('./middleware/authMiddleware.jsx')
 
+
 const app = express()
 const PORT = process.env.PORT || 6969
 
