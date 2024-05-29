@@ -4,3 +4,5 @@ const Bid = require('./Bid')
 
 
 module.exports = {User, Item, Bid}
+
+
