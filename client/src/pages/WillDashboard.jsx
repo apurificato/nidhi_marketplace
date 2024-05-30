@@ -1,15 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { useAuth } from '../context/AuthContext';
-
 import { useQuery } from '@apollo/client';
 import { GET_USER_DETAILS } from '../graphql/queries';
 
-
-import ProductForm from "../components/ProductForm"
-
 import ImageSlider from "../components/Carousel"
 
-function Dashboard() {
+function WillDashboard() {
 
 
     const { user } = useAuth();
@@ -38,35 +34,12 @@ function Dashboard() {
 
     return(
 
-<section className="dashboard">
-  <div className="carousel-container">
-    <ImageSlider />
-  </div>
+        <section className="dashboard">
   <div className="dash-container">
     <div className="left-column">
-      <div className="user-card">
-        <h3>Hi, {user.username}</h3>        
-        <h5>What are you looking for today?</h5>
+      <h2>Hi, {user.username}</h2>        
+        <p>What would you like to do?</p>
       </div>
-
-        <aside className="categories-table">
-          <a className="categories-item" href="/">Category</a>
-          <a className="categories-item" href="/">Category</a>
-          <a className="categories-item" href="/">Category</a>
-          <a className="categories-item" href="/">Category</a>
-          <a className="categories-item" href="/">Category</a>
-          <a className="categories-item" href="/">Category</a>
-          <a className="categories-item" href="/">Category</a>
-          <a className="categories-item" href="/">Category</a>
-          <a className="categories-item" href="/">Category</a>
-          <a className="categories-item" href="/">Category</a>
-        </aside>
-    </div>
-    <div className='right-column'>
-    <h2>Looking to Sell Some Products On Our Site?</h2>
-      <ProductForm />
-    </div>
-    <div>
       <h2>Items for Sale</h2>
       {userDetails?.itemsForSale.length ? (
         <ul>
@@ -112,11 +85,25 @@ function Dashboard() {
       ) : (
         <p>No items won.</p>
       )}
+      <aside className="categories-table">
+        <a className="categories-item" href="/">Category</a>
+        <a className="categories-item" href="/">Category</a>
+        <a className="categories-item" href="/">Category</a>
+        <a className="categories-item" href="/">Category</a>
+        <a className="categories-item" href="/">Category</a>
+        <a className="categories-item" href="/">Category</a>
+        <a className="categories-item" href="/">Category</a>
+        <a className="categories-item" href="/">Category</a>
+        <a className="categories-item" href="/">Category</a>
+        <a className="categories-item" href="/">Category</a>
+      </aside>
     </div>
-  </div>
+    <div className="carousel-container">
+      <ImageSlider />
+    </div>
 </section>
 
     )
 }
 
-export default Dashboard
+export default WillDashboard
