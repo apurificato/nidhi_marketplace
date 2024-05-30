@@ -1,6 +1,12 @@
+
 import { useAuth } from '../context/AuthContext';
 
-function Dashboard( ) {
+
+
+import ImageSlider from "../components/Carousel"
+
+function Dashboard() {
+
 
     const { user } = useAuth();
 
@@ -9,24 +15,32 @@ function Dashboard( ) {
     }
 
     return(
-        <section>
-            <div className="dash-container">
-                <div className="user-info">
-                  <h1>Hi, {user.username}</h1>
-                  <p>What would you like to do?</p>
-                </div>
-                <aside className="categories-table">
-                    <a href="/">Category</a>
-                    <a href="/">Category</a>
-                    <a href="/">Category</a>
-                    <a href="/">Category</a>
-                    <a href="/">Category</a>
-                </aside>
-            </div>
-            <div>
-      
-            </div>
-        </section>
+
+        <section className="dashboard">
+  <div className="dash-container">
+    <div className="left-column">
+      <h2>Hi, {user.username}</h2>        
+        <p>What would you like to do?</p>
+      </div>
+      <aside className="categories-table">
+        <a className="categories-item" href="/">Category</a>
+        <a className="categories-item" href="/">Category</a>
+        <a className="categories-item" href="/">Category</a>
+        <a className="categories-item" href="/">Category</a>
+        <a className="categories-item" href="/">Category</a>
+        <a className="categories-item" href="/">Category</a>
+        <a className="categories-item" href="/">Category</a>
+        <a className="categories-item" href="/">Category</a>
+        <a className="categories-item" href="/">Category</a>
+        <a className="categories-item" href="/">Category</a>
+      </aside>
+    </div>
+    <div className="carousel-container">
+      <ImageSlider />
+    </div>
+  </div>
+</section>
+
     )
 }
 
