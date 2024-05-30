@@ -38,12 +38,35 @@ function Dashboard() {
 
     return(
 
-        <section className="dashboard">
+<section className="dashboard">
+  <div className="carousel-container">
+    <ImageSlider />
+  </div>
   <div className="dash-container">
     <div className="left-column">
-      <h2>Hi, {user.username}</h2>        
-        <p>What would you like to do?</p>
+      <div className="user-card">
+        <h3>Hi, {user.username}</h3>        
+        <h5>What are you looking for today?</h5>
       </div>
+
+        <aside className="categories-table">
+          <a className="categories-item" href="/">Category</a>
+          <a className="categories-item" href="/">Category</a>
+          <a className="categories-item" href="/">Category</a>
+          <a className="categories-item" href="/">Category</a>
+          <a className="categories-item" href="/">Category</a>
+          <a className="categories-item" href="/">Category</a>
+          <a className="categories-item" href="/">Category</a>
+          <a className="categories-item" href="/">Category</a>
+          <a className="categories-item" href="/">Category</a>
+          <a className="categories-item" href="/">Category</a>
+        </aside>
+    </div>
+    <div className='right-column'>
+    <h2>Looking to Sell Some Products On Our Site?</h2>
+      <ProductForm />
+    </div>
+    <div>
       <h2>Items for Sale</h2>
       {userDetails?.itemsForSale.length ? (
         <ul>
@@ -89,25 +112,8 @@ function Dashboard() {
       ) : (
         <p>No items won.</p>
       )}
-      <aside className="categories-table">
-        <a className="categories-item" href="/">Category</a>
-        <a className="categories-item" href="/">Category</a>
-        <a className="categories-item" href="/">Category</a>
-        <a className="categories-item" href="/">Category</a>
-        <a className="categories-item" href="/">Category</a>
-        <a className="categories-item" href="/">Category</a>
-        <a className="categories-item" href="/">Category</a>
-        <a className="categories-item" href="/">Category</a>
-        <a className="categories-item" href="/">Category</a>
-        <a className="categories-item" href="/">Category</a>
-      </aside>
     </div>
-    <div className="carousel-container">
-      <ImageSlider />
-    </div>
-
-    <ProductForm />
-
+  </div>
 </section>
 
     )
