@@ -1,7 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { useAuth } from '../context/AuthContext';
+
 import { useQuery } from '@apollo/client';
 import { GET_USER_DETAILS } from '../graphql/queries';
+
+
+import ProductForm from "../components/ProductForm"
 
 import ImageSlider from "../components/Carousel"
 
@@ -101,6 +105,9 @@ function Dashboard() {
     <div className="carousel-container">
       <ImageSlider />
     </div>
+
+    <ProductForm />
+
 </section>
 
     )
