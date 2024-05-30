@@ -4,8 +4,10 @@ import Footer from './components/Footer'
 import Navbar from './components/Navbar'
 import Home from './pages/Home'
 import About from './pages/About'
+import WillDashboard from './pages/WillDashboard'
 import Dashboard from './pages/Dashboard'
 import AuthForm from './pages/AuthForm'
+import ItemList from './pages/ItemsList'
 import PrivateRoute from './PrivateRoute';
 import { useAuth } from './context/AuthContext';
 
@@ -26,9 +28,14 @@ function App() {
       <Routes>
         <Route path="/" element={<Home user={user}/>} />
         <Route path="/about" element={<About />} />
+        <Route path="/forsale" element={<ItemList />} />
         <Route 
           path="/dashboard" 
           element={<PrivateRoute element={<Dashboard />} />} 
+        />
+        <Route 
+          path="/willdashboard" 
+          element={<PrivateRoute element={<WillDashboard />} />} 
         />
         <Route 
           path="/auth" 
