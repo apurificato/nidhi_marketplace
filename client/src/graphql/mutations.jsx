@@ -47,6 +47,7 @@ export const CREATE_ITEM = gql`
 `;
 
 // Define a mutation to place a bid on an item
+
 export const PLACE_BID = gql`
   mutation PlaceBid($userId: ID!, $itemId: ID!, $amount: Float!) {
     placeBid(userId: $userId, itemId: $itemId, amount: $amount) {
