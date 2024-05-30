@@ -34,35 +34,36 @@ const [formData, setFormData] = useState(initialFormState);
 
     return (
         <section id="product-post-form">
-        <h2>Create a Product Post</h2>
+        <h3>Fill Out Form to List an Item</h3>
         <form onSubmit={handleSubmit}>
           <div>
-            <label htmlFor="name">Product Name:</label>
             <input
               type="text"
               id="name"
               name="name"
+              placeholder="product name"
               value={formData.name}
               onChange={handleInputChange}
               required
             />
           </div>
           <div>
-            <label htmlFor="description">Description:</label>
             <textarea
               id="description"
               name="description"
+              placeholder="description"
+              rows={5}
               value={formData.description}
               onChange={handleInputChange}
               required
             ></textarea>
           </div>
           <div>
-            <label htmlFor="startingBid">Starting Bid:</label>
             <input
               type="number"
               id="startingBid"
               name="startingBid"
+              placeholder="place a bid"
               value={formData.startingBid}
               onChange={handleInputChange}
               required
@@ -81,3 +82,9 @@ const [formData, setFormData] = useState(initialFormState);
 
 
 export default ProductForm
+
+/* <label htmlFor="name">Product Name:</label>
+
+<label htmlFor="description">Description:</label>
+
+<label htmlFor="startingBid">Starting Bid:</label> */
