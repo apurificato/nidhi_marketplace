@@ -6,6 +6,12 @@ require('dotenv').config();
 
 const resolvers = {
   Query: {
+    me: async (parent, args, context) => {
+      if (!context.user) throw new Error('Not authenticated');
+      // console.log(context.user.id)
+      const user = await User.findById(context.user.id);
+      return user;
+    },
     users: () => User.find().exec(),
     user: (_, { id }) => User.findById(id).exec(),
     items: () => Item.find().exec(),
