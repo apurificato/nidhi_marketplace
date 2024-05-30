@@ -1,8 +1,6 @@
 
 import { useAuth } from '../context/AuthContext';
-
-
-
+import ProductForm from "../components/ProductForm"
 import ImageSlider from "../components/Carousel"
 
 function Dashboard() {
@@ -38,7 +36,7 @@ function Dashboard() {
     <div className="carousel-container">
       <ImageSlider />
     </div>
-  </div>
+    <ProductForm />
 </section>
 
     )
