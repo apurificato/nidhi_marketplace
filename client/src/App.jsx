@@ -10,6 +10,7 @@ import PrivateRoute from './PrivateRoute';
 import { useAuth } from './context/AuthContext';
 
 
+
 function App() {
   const { loggedIn } = useAuth();
   const [user, setUser] = useState(null)
