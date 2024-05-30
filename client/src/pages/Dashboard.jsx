@@ -37,13 +37,39 @@ function Dashboard() {
       if (error) return <div>Error loading user details</div>;
 
     return(
-
-        <section className="dashboard">
+<section>
+<div className="dashboard">
+  <div className="carousel-container">
+    <ImageSlider />
+  </div>
   <div className="dash-container">
     <div className="left-column">
-      <h2>Hi, {user.username}</h2>        
-        <p>What would you like to do?</p>
+      <div className="user-card">
+        <h3>Hi, {user.username}</h3>        
+        <h5>What are you looking for today?</h5>
       </div>
+
+        <aside className="categories-table">
+          <a className="categories-item" href="/">Category</a>
+          <a className="categories-item" href="/">Category</a>
+          <a className="categories-item" href="/">Category</a>
+          <a className="categories-item" href="/">Category</a>
+          <a className="categories-item" href="/">Category</a>
+          <a className="categories-item" href="/">Category</a>
+          <a className="categories-item" href="/">Category</a>
+          <a className="categories-item" href="/">Category</a>
+          <a className="categories-item" href="/">Category</a>
+          <a className="categories-item" href="/">Category</a>
+        </aside>
+    </div>
+    <div className='right-column'>
+    <h2>Looking to Sell Some Products On Our Site?</h2>
+      <ProductForm />
+    </div>
+  </div>
+</div>
+  <div className='user-sales-bids-section'>
+    <div id='items-col-1'>
       <h2>Items for Sale</h2>
       {userDetails?.itemsForSale.length ? (
         <ul>
@@ -60,7 +86,9 @@ function Dashboard() {
       ) : (
         <p>No items for sale.</p>
       )}
+    </div>
 
+    <div id='items-col-2'>
       <h2>Your Bids</h2>
       {userDetails?.bids.length ? (
         <ul>
@@ -74,7 +102,9 @@ function Dashboard() {
       ) : (
         <p>No bids placed.</p>
       )}
+    </div>
 
+    <div id='items-col-3'>
       <h2>Items Won</h2>
       {userDetails?.itemsWon.length ? (
         <ul>
@@ -89,27 +119,9 @@ function Dashboard() {
       ) : (
         <p>No items won.</p>
       )}
-      <aside className="categories-table">
-        <a className="categories-item" href="/">Category</a>
-        <a className="categories-item" href="/">Category</a>
-        <a className="categories-item" href="/">Category</a>
-        <a className="categories-item" href="/">Category</a>
-        <a className="categories-item" href="/">Category</a>
-        <a className="categories-item" href="/">Category</a>
-        <a className="categories-item" href="/">Category</a>
-        <a className="categories-item" href="/">Category</a>
-        <a className="categories-item" href="/">Category</a>
-        <a className="categories-item" href="/">Category</a>
-      </aside>
     </div>
-    <div className="carousel-container">
-      <ImageSlider />
-    </div>
-
-    <ProductForm />
-
+  </div>
 </section>
-
     )
 }
 

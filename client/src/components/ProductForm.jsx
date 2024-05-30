@@ -57,33 +57,46 @@ function ProductForm() {
     }
   };
 
-  return (
-    <section id="product-post-form">
-      <h2>Create a Product Post</h2>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label htmlFor="name">Product Name:</label>
-          <input
-            type="text"
-            id="name"
-            name="name"
-            value={formData.name}
-            onChange={handleInputChange}
-            required
-          />
-        </div>
-        <div>
-          <label htmlFor="description">Description:</label>
-          <textarea
-            id="description"
-            name="description"
-            value={formData.description}
-            onChange={handleInputChange}
-            required
-          ></textarea>
-        </div>
-        <div>
-          <label htmlFor="startingBid">Starting Bid:</label>
+
+
+    return (
+        <section id="product-post-form">
+        <h3>Fill Out Form to List an Item</h3>
+        <form onSubmit={handleSubmit}>
+          <div>
+            <input
+              type="text"
+              id="name"
+              name="name"
+              placeholder="product name"
+              value={formData.name}
+              onChange={handleInputChange}
+              required
+            />
+          </div>
+          <div>
+            <textarea
+              id="description"
+              name="description"
+              placeholder="description"
+              rows={5}
+              value={formData.description}
+              onChange={handleInputChange}
+              required
+            ></textarea>
+          </div>
+          <div>
+            <input
+              type="number"
+              id="startingBid"
+              name="startingBid"
+              placeholder="place a bid"
+              value={formData.startingBid}
+              onChange={handleInputChange}
+              required
+            />
+          </div>
+
           <input
             type="number"
             id="startingBid"
@@ -105,4 +118,13 @@ function ProductForm() {
   );
 }
 
-export default ProductForm;
+
+
+export default ProductForm
+
+/* <label htmlFor="name">Product Name:</label>
+
+<label htmlFor="description">Description:</label>
+
+<label htmlFor="startingBid">Starting Bid:</label> */
+
