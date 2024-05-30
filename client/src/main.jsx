@@ -1,23 +1,20 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import { BrowserRouter } from 'react-router-dom';
+import { ApolloProvider} from '@apollo/client';
+import client from './client.jsx'
+import { AuthProvider } from './context/AuthContext';
+
 import App from './App.jsx'
-import { ApolloClient, InMemoryCache, ApolloProvider, gql } from '@apollo/client';
-
 import './index.scss'
-
-const client = new ApolloClient({
-  uri: '/graphql',
-  cache: new InMemoryCache(),
-});
-
-
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <BrowserRouter>
       <ApolloProvider client={client}>
-        <App />
+        <AuthProvider>
+          <App />
+        </AuthProvider>
       </ApolloProvider>
     </BrowserRouter>
   </React.StrictMode>,
