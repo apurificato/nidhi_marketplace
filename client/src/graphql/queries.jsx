@@ -11,6 +11,38 @@ export const GET_ME = gql`
   }
 `;
 
+export const GET_USER_DETAILS = gql`
+  query GetUserDetails($id: ID!) {
+    user(id: $id) {
+      id
+      username
+      email
+      itemsForSale {
+        id
+        name
+        description
+        startingBid
+        currentBid
+        endTime
+      }
+      bids {
+        id
+        item {
+          id
+          name
+        }
+        amount
+      }
+      itemsWon {
+        id
+        name
+        description
+        currentBid
+      }
+    }
+  }
+`;
+
 export const GET_USERS = gql`
   query GetUsers {
     users {

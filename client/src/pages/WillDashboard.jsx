@@ -5,7 +5,7 @@ import { GET_USER_DETAILS } from '../graphql/queries';
 
 import ImageSlider from "../components/Carousel"
 
-function Dashboard() {
+function WillDashboard() {
 
 
     const { user } = useAuth();
@@ -106,4 +106,4 @@ function Dashboard() {
     )
 }
 
-export default Dashboard
+export default WillDashboard
