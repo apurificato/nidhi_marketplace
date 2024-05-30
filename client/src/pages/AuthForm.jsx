@@ -51,8 +51,10 @@ function AuthForm() {
       
       // If login or registration is successful, update the context and navigate
       if (data) {
-        login(token) // Set the loggedIn state to true
-        navigate('/dashboard')
+        login(token, () => {
+          navigate('/dashboard');
+        })
+      
       } else {
         console.error('Error: Data not received')
       }
