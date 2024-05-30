@@ -14,7 +14,7 @@ function Dashboard() {
 
     return(
 
-        <section className="dashboard">
+<section className="dashboard">
   <div className="dash-container">
     <div className="left-column">
       <h2>Hi, {user.username}</h2>        
