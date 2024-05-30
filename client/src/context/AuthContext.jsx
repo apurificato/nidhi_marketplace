@@ -1,7 +1,6 @@
 import React, { createContext, useState, useEffect, useContext } from 'react';
 import Cookies from 'js-cookie';
 import { useQuery } from '@apollo/client';
-import { jwtDecode as decode } from 'jwt-decode';
 import { GET_ME } from '../graphql/queries';
 // Use named import for jwt-decode
 

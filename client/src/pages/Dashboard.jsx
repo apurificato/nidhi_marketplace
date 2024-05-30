@@ -1,15 +1,18 @@
-
+import { useAuth } from '../context/AuthContext';
 
 function Dashboard( ) {
 
+    const { user } = useAuth();
 
-
+    if (!user) {
+      return <div>Loading...</div>;
+    }
 
     return(
         <section>
             <div className="dash-container">
                 <div className="user-info">
-                  <h1>Hi, User</h1>
+                  <h1>Hi, {user.username}</h1>
                   <p>What would you like to do?</p>
                 </div>
                 <aside className="categories-table">
