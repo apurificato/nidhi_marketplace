@@ -1,6 +1,16 @@
 import { gql } from "@apollo/client";
 
 // Define a query to fetch all users
+export const GET_ME = gql`
+  query GetMe {
+    me {
+      id
+      username
+      email
+    }
+  }
+`;
+
 export const GET_USERS = gql`
   query GetUsers {
     users {
