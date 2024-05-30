@@ -8,6 +8,7 @@ import Dashboard from './pages/Dashboard'
 import AuthForm from './pages/AuthForm'
 
 
+
 function App() {
   const [user, setUser] = useState(null)
 
@@ -19,11 +20,11 @@ function App() {
   //         })
   // }, [])
 
-  const logoutUser = async () => {
-      // await axios.get('/api/auth/logout')
+  // const logoutUser = async () => {
+  //     // await axios.get('/api/auth/logout')
 
-      // setUser(null)
-  }
+  //     // setUser(null)
+  // }
 
 
   return (
@@ -36,7 +37,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home user={user}/>} />
         <Route path="/about" element={<About />} />
-        <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/dashboard" element={<Dashboard user={setUser}/>} />
         <Route path="/auth" element={<AuthForm setUser={setUser}/>} />
       </Routes>
 
