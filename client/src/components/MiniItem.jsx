@@ -3,47 +3,43 @@ import { Link } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import AuctionTimer from './AuctionTimer';
 import AuctionImage from './AuctionImage';
-import BidButton from './BidButton'; // Import the new component
-import AcceptBidButton from './AcceptBidButton'; // Import the new component
+import BidButton from './BidButton'; 
+import AcceptBidButton from './AcceptBidButton';
 import PayNowButton from './PayNowButton';
 
 const MiniItem = ({ item, refetch }) => {
     const [bidValue, setBidValue] = useState(item.currentBid + 1);
-    // console.log(item)
     const { user } = useAuth();
-    // console.log(user.id)
-    // console.log(item.seller.id)
     const isSeller = user.id === item.seller.id;
-    const isCompleted = item.isCompleted
-
-
+    const isCompleted = item.isCompleted;
 
     return (
-        <>
-            <div className="item-header">
-                <h3>{item.name}</h3>
-                <Link to={`/products/${item.id}`}>View Details</Link>
+        <div className="card mb-3 mini-item">
+            <div className="card-header d-flex justify-content-between align-items-center">
+                <h5 className="mb-0">{item.name}</h5>
+                <Link to={`/products/${item.id}`} className="btn btn-link">View Details</Link>
             </div>
-            <div className="item-content">
-                <AuctionImage imageId={item.imageId} itemName={item.name} />
-                <div className="item-details">
-                    <p>Seller: {item.seller.username}</p>
-                    <p>Current Bid: ${bidValue-1}</p>
-                    <p>High Bidder: {item.highBidder?.username || 'None'}</p>
+            <div className="card-body">
+                <div className="mb-3">
+                    <AuctionImage imageId={item.imageId} itemName={item.name} />
+                </div>
+                <div className="mb-3">
+                    <p className="mb-1"><strong>Seller:</strong> {item.seller.username}</p>
+                    <p className="mb-1"><strong>Current Bid:</strong> ${bidValue - 1}</p>
+                    <p className="mb-1"><strong>High Bidder:</strong> {item.highBidder?.username || 'None'}</p>
                     <AuctionTimer item={item} />
                 </div>
-                <div className="item-actions">
-                    {isCompleted?(
+                <div className="text-center">
+                    {isCompleted ? (
                         <PayNowButton item={item} />
-                    ):
-                    isSeller ? (
+                    ) : isSeller ? (
                         <AcceptBidButton item={item} />
                     ) : (
                         <BidButton item={item} bidValue={bidValue} setBidValue={setBidValue} />
                     )}
                 </div>
             </div>
-        </>
+        </div>
     );
 };
 

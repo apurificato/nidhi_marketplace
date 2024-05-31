@@ -1,9 +1,8 @@
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useAuth } from '../context/AuthContext';
 import { useQuery } from '@apollo/client';
 import { GET_USER_DETAILS } from '../graphql/queries';
-import AddProduct from "../pages/AddProduct";
-import Item from '../components/Item'; // Import the Item component
+import ProductForm from "../components/ProductForm";
 import MiniItem from '../components/MiniItem';
 
 function Dashboard() {
@@ -46,32 +45,28 @@ function Dashboard() {
   const highestBids = userDetails ? getHighestBids(userDetails.bids) : [];
 
   return (
-    <section>
-      <div className="dashboard">
-        <div className="dash-container">
-            <div className="user-card">
-              <h3>Hi, {user.username}</h3>
-              <h5>What are you looking for today?</h5>
-            </div>
-
-            <aside className="categories-table">
-              {/* Add your categories here */}
-            </aside>
+    <section className="container my-4">
+      <div className="row mb-4">
+        <div className="col-md-6">
+          <div className="card p-3">
+            <h3>Hi, {user.username}</h3>
+            <h5>What are you looking for today?</h5>
           </div>
-          <div className='right-column'>
-            <h2>Looking to Sell Some Products On Our Site?</h2>
-            <button onClick={() => setIsModalOpen(true)}>Sell Product</button>
-          </div>
+        </div>
+        <div className="col-md-6 d-flex align-items-center justify-content-end">
+          <button className="btn btn-primary" onClick={() => setIsModalOpen(true)}>Sell Product</button>
         </div>
       </div>
 
-      <div className='user-sales-bids-section'>
-        <div id='items-col-1' className='d-flex flex-column align-items-center'>
-          <h2>Items for Sale</h2>
+      <div className="row">
+        <div className="col-lg-4 mb-4">
+          <h2>Selling</h2>
           {userDetails?.itemsForSale.length ? (
-            <ul className="d-flex flex-column align-items-center justify-content-center">
+            <ul className="list-unstyled">
               {userDetails.itemsForSale.map(item => (
-                <Item key={item.id} item={item} refetch={refetch} dashboardStyle />
+                <li key={item.id} className="mb-3">
+                  <MiniItem item={item} refetch={refetch} />
+                </li>
               ))}
             </ul>
           ) : (
@@ -79,12 +74,14 @@ function Dashboard() {
           )}
         </div>
 
-        <div id='items-col-2'>
-          <h2>Your Bids</h2>
+        <div className="col-lg-4 mb-4">
+          <h2>Bidding</h2>
           {highestBids.length ? (
-            <ul>
-            {highestBids.filter(bid => !bid.item.isCompleted).map(bid => (
-                <MiniItem key={bid.item.id} item={bid.item} refetch={refetch} />
+            <ul className="list-unstyled">
+              {highestBids.filter(bid => !bid.item.isCompleted).map(bid => (
+                <li key={bid.item.id} className="mb-3">
+                  <MiniItem item={bid.item} refetch={refetch} />
+                </li>
               ))}
             </ul>
           ) : (
@@ -92,15 +89,17 @@ function Dashboard() {
           )}
         </div>
 
-        <div id='items-col-3'>
-          <h2>Items Won</h2>
+        <div className="col-lg-4 mb-4">
+          <h2>Winning</h2>
           {userDetails?.itemsWon
                 .filter(item => item.isCompleted && item.highBidder.id === user.id).length ? (
-            <ul>
+            <ul className="list-unstyled">
               {userDetails.itemsWon
                 .filter(item => item.isCompleted && item.highBidder.id === user.id)
                 .map(item => (
-                  <Item key={item.id} item={item} refetch={refetch} dashboardStyle />
+                  <li key={item.id} className="mb-3">
+                    <MiniItem item={item} refetch={refetch} />
+                  </li>
                 ))}
             </ul>
           ) : (
@@ -110,10 +109,19 @@ function Dashboard() {
       </div>
 
       {isModalOpen && (
-        <div className="modal">
-          <div className="modal-content">
-            <span className="close" onClick={() => setIsModalOpen(false)}>&times;</span>
-            <ProductForm refetch={refetch} />
+        <div className="modal show d-block" role="dialog">
+          <div className="modal-dialog" role="document">
+            <div className="modal-content">
+              <div className="modal-header">
+                <h5 className="modal-title">Sell Product</h5>
+                <button type="button" className="close" onClick={() => setIsModalOpen(false)}>
+                  <span>&times;</span>
+                </button>
+              </div>
+              <div className="modal-body">
+                <ProductForm refetch={refetch} />
+              </div>
+            </div>
           </div>
         </div>
       )}

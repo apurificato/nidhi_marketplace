@@ -46,7 +46,7 @@ const BidButton = ({ item, bidValue, setBidValue }) => {
         onChange={handleInputChange}
         required
       />
-      <button type="submit">Bid {bidValue}</button>
+      <button className="btn btn-warning" type="submit">Bid {bidValue}</button>
     </form>
   );
 };
