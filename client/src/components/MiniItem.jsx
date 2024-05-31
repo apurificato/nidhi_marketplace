@@ -7,7 +7,7 @@ import BidButton from './BidButton'; // Import the new component
 import AcceptBidButton from './AcceptBidButton'; // Import the new component
 import PayNowButton from './PayNowButton';
 
-const MiniItem = ({ item, refetch }) => {
+const MiniItem = ({ item }) => {
     const [bidValue, setBidValue] = useState(item.currentBid + 1);
     // console.log(item)
     const { user } = useAuth();
@@ -20,29 +20,32 @@ const MiniItem = ({ item, refetch }) => {
 
     return (
         <>
-            <div className="item-header">
-                <h3>{item.name}</h3>
-                <Link to={`/products/${item.id}`}>View Details</Link>
-            </div>
-            <div className="item-content">
-                <AuctionImage imageId={item.imageId} itemName={item.name} />
-                <div className="item-details">
-                    <p>Seller: {item.seller.username}</p>
-                    <p>Current Bid: ${bidValue-1}</p>
-                    <p>High Bidder: {item.highBidder?.username || 'None'}</p>
-                    <AuctionTimer item={item} />
-                </div>
-                <div className="item-actions">
-                    {isCompleted?(
-                        <PayNowButton item={item} />
-                    ):
-                    isSeller ? (
-                        <AcceptBidButton item={item} />
-                    ) : (
-                        <BidButton item={item} bidValue={bidValue} setBidValue={setBidValue} />
-                    )}
-                </div>
-            </div>
+         <div className="bg-light rounded p-5">
+      <div className="d-flex justify-content-between align-items-center mb-3">
+        <h4>{item.name}</h4>
+        <Link to={`/products/${item.id}`}>View Details</Link>
+      </div>
+      <div className="row mb-3">
+        <div className="col-12 col-md-4 d-flex justify-content-center">
+          <AuctionImage className="d-flex justify-content-center align-items-center" imageId={item.imageId} itemName={item.name} />
+        </div>
+        <div className="col-12 col-md-4 d-flex flex-column justify-content-center align-items-center">
+          <p>Seller: {item.seller.username}</p>
+          <p>Current Bid: ${bidValue - 1}</p>
+          <p>High Bidder: {item.highBidder?.username || 'None'}</p>
+          <AuctionTimer item={item} />
+        </div>
+        <div className="col-12 col-md-4 d-flex justify-content-center align-items-center">
+          {isCompleted ? (
+            <PayNowButton item={item} />
+          ) : isSeller ? (
+            <AcceptBidButton item={item} />
+          ) : (
+            <BidButton item={item} bidValue={bidValue} setBidValue={setBidValue} />
+          )}
+        </div>
+      </div>
+    </div>
         </>
     );
 };

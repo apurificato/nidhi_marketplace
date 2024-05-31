@@ -14,9 +14,10 @@ const AuctionImage = ({ imageId, itemName }) => {
   const itemImage = imageId ? cld.image(imageId) : null;
 
   return (
-    <div className="item-image">
+    <div className="mini-item-image">
       {itemImage ? (
         <AdvancedImage
+        className="item-image"
           cldImg={itemImage}
           plugins={[responsive(), placeholder({ mode: 'blur' })]}
           alt={itemName}
