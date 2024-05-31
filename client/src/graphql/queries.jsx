@@ -24,6 +24,7 @@ export const GET_USER_DETAILS = gql`
         startingBid
         currentBid
         endTime
+        imageId
         seller {
           id
           username
@@ -51,6 +52,7 @@ export const GET_USER_DETAILS = gql`
           startingBid
           currentBid
           endTime
+          imageId
           seller {
             id
             username
@@ -68,6 +70,7 @@ export const GET_USER_DETAILS = gql`
         startingBid
         currentBid
         endTime
+        imageId
         seller {
           id
           username

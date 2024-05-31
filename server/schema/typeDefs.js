@@ -21,6 +21,7 @@ type Item {
   endTime: String!
   bids: [Bid!]
   isCompleted: Boolean!
+  imageId: String # Add this line
 }
 
 type Bid {
@@ -48,10 +49,9 @@ type Query {
 type Mutation {
   createUser(username: String!, email: String!, password: String!): AuthPayload!
   login(email: String!, password: String!): AuthPayload!
-  createItem(userId: ID!, name: String!, description: String!, startingBid: Float!): Item!
+  createItem(userId: ID!, name: String!, description: String!, startingBid: Float!, imageId: String!): Item! # Add imageId
   placeBid(userId: ID!, itemId: ID!, amount: Float!): Bid!
   acceptBid(itemId: ID!, userId: ID!): Item! # New mutation for accepting bids
-
 }
 `;
 

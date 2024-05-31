@@ -3,15 +3,17 @@ import { useNavigate } from 'react-router-dom';
 import { CREATE_ITEM } from '../graphql/mutations';
 import { useMutation } from '@apollo/client';
 import { useAuth } from '../context/AuthContext';
+import FileUpload from './FileUpload';
 
 const initialFormState = {
   userId: '',
   name: '',
   description: '',
-  startingBid: ''
+  startingBid: '',
+  imageId: '' // Add imageId to the form state
 };
 
-function ProductForm() {
+function ProductForm({ refetch }) {
   const [formData, setFormData] = useState(initialFormState);
   const { user } = useAuth();
   const navigate = useNavigate();
@@ -39,6 +41,10 @@ function ProductForm() {
     });
   };
 
+  const handleImageUpload = (publicId) => {
+    setFormData((prevData) => ({ ...prevData, imageId: publicId }));
+  };
+
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
@@ -47,9 +53,11 @@ function ProductForm() {
           userId: formData.userId,
           name: formData.name,
           description: formData.description,
-          startingBid: parseFloat(formData.startingBid)
+          startingBid: parseFloat(formData.startingBid),
+          imageId: formData.imageId // Include imageId in the mutation variables
         }
       });
+      refetch();
       console.log('Item created:', data);
       setFormData(initialFormState);
     } catch (error) {
@@ -57,71 +65,52 @@ function ProductForm() {
     }
   };
 
-
-
-    return (
-        <section id="product-post-form">
-        <h3>Fill Out Form to List an Item</h3>
-        <form onSubmit={handleSubmit}>
-          <div>
-            <input
-              type="text"
-              id="name"
-              name="name"
-              placeholder="product name"
-              value={formData.name}
-              onChange={handleInputChange}
-              required
-            />
-          </div>
-          <div>
-            <textarea
-              id="description"
-              name="description"
-              placeholder="description"
-              rows={5}
-              value={formData.description}
-              onChange={handleInputChange}
-              required
-            ></textarea>
-          </div>
-          <div>
-            <input
-              type="number"
-              id="startingBid"
-              name="startingBid"
-              placeholder="place a bid"
-              value={formData.startingBid}
-              onChange={handleInputChange}
-              required
-            />
-          </div>
+  return (
+    <section id="product-post-form">
+      <h3>Fill Out Form to List an Item</h3>
+      <form onSubmit={handleSubmit}>
+        <div>
+          <input
+            type="text"
+            id="name"
+            name="name"
+            placeholder="product name"
+            value={formData.name}
+            onChange={handleInputChange}
+            required
+          />
+        </div>
+        <div>
+          <textarea
+            id="description"
+            name="description"
+            placeholder="description"
+            rows={5}
+            value={formData.description}
+            onChange={handleInputChange}
+            required
+          ></textarea>
+        </div>
         <div>
           <input
             type="number"
             id="startingBid"
             name="startingBid"
-            step="0.01"
+            placeholder="place a bid"
             value={formData.startingBid}
             onChange={handleInputChange}
             required
           />
         </div>
-        <input
-          type="hidden"
-          name="userId"
-          value={formData.userId}
-        />
+        <FileUpload setImageId={handleImageUpload} />
+        <input type="hidden" name="userId" value={formData.userId} />
         <button type="submit">Submit</button>
       </form>
     </section>
-    
   );
 }
 
-
-
-export default ProductForm
+export default ProductForm;
 
 /* <label htmlFor="name">Product Name:</label>
 
