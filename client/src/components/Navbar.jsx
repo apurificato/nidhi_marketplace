@@ -28,13 +28,15 @@ function Navbar() {
           <span className="hamburger-line"></span>
           <span className="hamburger-line"></span>
           <span className="hamburger-line"></span>
+          <span className="hamburger-line"></span>
         </button>
         
         <nav className={`navbar ${isOpen ? 'open' : ''}`}>
           <NavLink to="/about" className="nav-link" onClick={toggleMenu}>About Us</NavLink>
-          <NavLink to="/add-product" className="nav-link" onClick={toggleMenu}>Add Product</NavLink>
+          <NavLink to="/item-sales" className="nav-link" onClick={toggleMenu}>For Sale</NavLink>
           {loggedIn ? (
             <>
+              <NavLink to="/add-product" className="nav-link" onClick={toggleMenu}>Add Product</NavLink>
               <NavLink to="/dashboard" className="nav-link" onClick={toggleMenu}>Dashboard</NavLink>
               <button className="nav-link" onClick={() => { logout(() => toggleMenu()); }}>Logout</button>
             </>

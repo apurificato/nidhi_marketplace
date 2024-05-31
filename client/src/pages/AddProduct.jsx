@@ -1,40 +1,43 @@
 import { useState } from 'react';
-import ProductForm from "../components/ProductForm";
+import Button from 'react-bootstrap/Button';
+// import Form from 'react-bootstrap/Form';
+import Modal from 'react-bootstrap/Modal';
+import ProductForm from '../components/ProductForm'
 
-function AddProduct() {
-    const [isModalOpen, setIsModalOpen] = useState(false);
+function Example() {
+  const [show, setShow] = useState(false);
 
-    const showModal = () => {
-        setIsModalOpen(true);
-        console.log('click')
-    };
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
 
-    const closeModal = () => {
-        setIsModalOpen(false);
-    };
+  return (
+    <>
+    <h1>Want to Sell Something?</h1>
+    <h3>List an Item for Sale on <span className="text-success">OUR_SITE!</span></h3>
+    <div className="p-5">
+      <Button variant="primary" onClick={handleShow}>
+        List Item Now
+      </Button>
 
-    return (
-        <section>
-            <h1>List an Item for Sale!</h1>
-            <div className="py-5">
-                <button onClick={showModal} type="button" data-mdb-button-init data-mdb-ripple-init className="btn btn-primary" data-mdb-modal-init data-mdb-target="#staticBackdrop5">
-                    List and Sell an Item Now
-                </button>
-
-                <div className={`modal top fade ${isModalOpen ? 'show' : ''}`} id="staticBackdrop5" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden={!isModalOpen} data-mdb-backdrop="true" data-mdb-keyboard="true">
-                    <div className="modal-dialog modal-dialog-centered text-center d-flex justify-content-center">
-                        <div className="modal-content w-75">
-                            <div className="modal-body p-4">
-                                <img src="react.svg" alt="avatar" className="rounded-circle position-absolute top-0 start-50 translate-middle h-50" />
-                                <ProductForm />
-                                <button type="button" className="btn btn-secondary" onClick={closeModal}>Close</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-    )
+      <Modal show={show} onHide={handleClose}>
+        <Modal.Header closeButton>
+          <Modal.Title>Modal heading</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+            <ProductForm />
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleClose}>
+            Close
+          </Button>
+          <Button variant="primary" onClick={handleClose}>
+            Save Changes
+          </Button>
+        </Modal.Footer>
+      </Modal>
+    </div>
+    </>
+  );
 }
 
-export default AddProduct;
+export default Example;
