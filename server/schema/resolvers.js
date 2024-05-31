@@ -74,7 +74,41 @@ const resolvers = {
       await user.save();
 
       return bid;
-    }
+    },
+    acceptBid: async (_, { itemId, userId }, context) => {
+      // Ensure the user is authenticated
+      if (!context.user) {
+        throw new Error('Not authenticated');
+      }
+
+      // Fetch the item
+      const item = await Item.findById(itemId).exec();
+      if (!item) {
+        throw new Error('Item not found');
+      }
+
+      // Check if the user is the seller of the item
+      if (item.seller.toString() !== context.user.id) {
+        throw new Error('Only the seller can accept bids for their item');
+      }
+
+      // Update the item's end time to the current time
+      item.endTime = new Date().toISOString();
+
+      // Award the item to the highest bidder
+      if (item.highBidder) {
+        const highBidder = await User.findById(item.highBidder).exec();
+        if (highBidder) {
+          highBidder.itemsWon.push(itemId);
+          await highBidder.save();
+        }
+      }
+
+      // Save the updated item
+      await item.save();
+
+      return item;
+    },
   },
   User: {
     itemsForSale: (user) => Item.find({ seller: user.id }).exec(),
@@ -85,6 +119,10 @@ const resolvers = {
     }
   },
   Item: {
+
+    isCompleted: (item) => {
+      return new Date(item.endTime) < new Date();
+    },
     seller: (item) => User.findById(item.seller).exec(),
     highBidder: (item) => User.findById(item.highBidder).exec(),
     bids: (item) => Bid.find({ item: item.id }).exec()

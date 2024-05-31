@@ -41,10 +41,17 @@ const login = (token, callback) => {
   });
 };
 
-const logout = () => {
+// const logout = () => {
+//   Cookies.remove('token');
+//   setLoggedIn(false);
+//   setUser(null);
+// };
+
+const logout = (callback) => {
   Cookies.remove('token');
-  setLoggedIn(false);
-  setUser(null);
+  refetch().then(() => {
+    if (callback) callback();
+  });
 };
 
 return (

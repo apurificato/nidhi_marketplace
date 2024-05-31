@@ -96,7 +96,7 @@ function ProductForm() {
               required
             />
           </div>
-
+        <div>
           <input
             type="number"
             id="startingBid"
@@ -115,6 +115,7 @@ function ProductForm() {
         <button type="submit">Submit</button>
       </form>
     </section>
+    
   );
 }
 

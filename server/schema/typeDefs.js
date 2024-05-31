@@ -20,6 +20,7 @@ type Item {
   highBidder: User
   endTime: String!
   bids: [Bid!]
+  isCompleted: Boolean!
 }
 
 type Bid {
@@ -49,6 +50,8 @@ type Mutation {
   login(email: String!, password: String!): AuthPayload!
   createItem(userId: ID!, name: String!, description: String!, startingBid: Float!): Item!
   placeBid(userId: ID!, itemId: ID!, amount: Float!): Bid!
+  acceptBid(itemId: ID!, userId: ID!): Item! # New mutation for accepting bids
+
 }
 `;
 

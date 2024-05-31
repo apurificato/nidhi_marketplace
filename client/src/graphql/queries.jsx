@@ -24,24 +24,72 @@ export const GET_USER_DETAILS = gql`
         startingBid
         currentBid
         endTime
+        seller {
+          id
+          username
+        }
+        highBidder {
+          id
+          username
+        }
+        bids {
+          id
+          amount
+          user {
+            id
+            username
+          }
+        }
       }
       bids {
         id
+        amount
         item {
           id
           name
+          description
+          startingBid
+          currentBid
+          endTime
+          seller {
+            id
+            username
+          }
+          highBidder {
+            id
+            username
+          }
         }
-        amount
       }
       itemsWon {
         id
         name
         description
+        startingBid
         currentBid
+        endTime
+        seller {
+          id
+          username
+        }
+        highBidder {
+          id
+          username
+        }
+        bids {
+          id
+          amount
+          user {
+            id
+            username
+          }
+        }
+        isCompleted
       }
     }
   }
 `;
+
 
 export const GET_USERS = gql`
   query GetUsers {
