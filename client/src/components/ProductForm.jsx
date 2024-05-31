@@ -29,7 +29,7 @@ function ProductForm({ refetch }) {
 
   const [createItem] = useMutation(CREATE_ITEM, {
     onCompleted: () => {
-      navigate('/dashboard');
+      refetch();
     },
     onError: (error) => {
       console.error('Error creating item:', error);
