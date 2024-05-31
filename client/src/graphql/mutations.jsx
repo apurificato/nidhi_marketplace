@@ -69,3 +69,31 @@ export const PLACE_BID = gql`
     }
   }
 `;
+ export const ACCEPT_BID = gql`
+ mutation AcceptBid($itemId: ID!, $userId: ID!) {
+  acceptBid(itemId: $itemId, userId: $userId) {
+    id
+    name
+    description
+    startingBid
+    currentBid
+    seller {
+      id
+      username
+    }
+    highBidder {
+      id
+      username
+    }
+    endTime
+    bids {
+      id
+      amount
+      user {
+        id
+        username
+      }
+    }
+  }
+}
+ `
