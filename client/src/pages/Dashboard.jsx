@@ -36,6 +36,7 @@ function Dashboard() {
       }
     });
 
+
     return Object.values(highestBids);
   };
 
@@ -113,6 +114,7 @@ function Dashboard() {
     </section>
   );
 }
+
 
 export default Dashboard;
 // import React, { useState, useEffect } from 'react';

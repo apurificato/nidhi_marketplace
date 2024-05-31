@@ -42,8 +42,12 @@ function App() {
           path="/auth" 
           element={!loggedIn ? <AuthForm /> : <Navigate to="/dashboard" />} 
         />
+
         <Route path="/products/:id" element={<ProductPage />} />
+
       </Routes>
+
+      
 
       </div>
     

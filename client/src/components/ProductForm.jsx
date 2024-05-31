@@ -65,6 +65,7 @@ function ProductForm({ refetch }) {
     }
   };
 
+
   return (
     <section id="product-post-form">
       <h3>Fill Out Form to List an Item</h3>
@@ -92,6 +93,7 @@ function ProductForm({ refetch }) {
           ></textarea>
         </div>
         <div>
+
           <input
             type="number"
             id="startingBid"

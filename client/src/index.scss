@@ -85,7 +85,7 @@ header .brand {
 }
 
 header nav a {
-  justify-content: space-betw;
+  justify-content: space-between;
   padding-left: 25px;
   /* color: #7ed957; */
   color: aliceblue;
@@ -457,7 +457,7 @@ $breakpoint: 768px;
 }
 
 .categories-item {
-  background-color: #5ad983;
+  background-color: #a7a7a7;
   padding: 10px 0;
   border-radius: 10px;
   width: 100%;
