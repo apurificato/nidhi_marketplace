@@ -5,6 +5,7 @@ import AuctionTimer from './AuctionTimer';
 import AuctionImage from './AuctionImage';
 import BidButton from './BidButton'; // Import the new component
 import AcceptBidButton from './AcceptBidButton'; // Import the new component
+import PayNowButton from './PayNowButton';
 
 const MiniItem = ({ item, refetch }) => {
     const [bidValue, setBidValue] = useState(item.currentBid + 1);
@@ -13,6 +14,7 @@ const MiniItem = ({ item, refetch }) => {
     // console.log(user.id)
     // console.log(item.seller.id)
     const isSeller = user.id === item.seller.id;
+    const isCompleted = item.isCompleted
 
 
 
@@ -31,7 +33,10 @@ const MiniItem = ({ item, refetch }) => {
                     <AuctionTimer item={item} />
                 </div>
                 <div className="item-actions">
-                    {isSeller ? (
+                    {isCompleted?(
+                        <PayNowButton item={item} />
+                    ):
+                    isSeller ? (
                         <AcceptBidButton item={item} />
                     ) : (
                         <BidButton item={item} bidValue={bidValue} setBidValue={setBidValue} />
