@@ -1,3 +1,4 @@
+// Item.js
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
@@ -7,7 +8,7 @@ import { AdvancedImage, responsive, placeholder } from "@cloudinary/react";
 import placeholderImage from '../assets/placeholder.png';
 import { useAuth } from '../context/AuthContext';
 
-const Item = ({ item, refetch }) => {
+const Item = ({ item, refetch, dashboardStyle }) => {
   const [bidValue, setBidValue] = useState(item.currentBid + 1);
   const { user } = useAuth();
 
@@ -79,14 +80,6 @@ const Item = ({ item, refetch }) => {
 
   const [timeRemaining, setTimeRemaining] = useState(calculateTimeRemaining(item.endTime));
 
-//   useEffect(() => {
-//     const timer = setInterval(() => {
-//       setTimeRemaining(calculateTimeRemaining(item.endTime));
-//     }, 1000);
-
-//     return () => clearInterval(timer);
-//   }, [item.endTime]);
-
   const formattedTimeRemaining = renderTimeRemaining(timeRemaining);
 
   const handleAcceptBid = async () => {
@@ -112,50 +105,52 @@ const Item = ({ item, refetch }) => {
       cloudName: 'dbpisovxi' // Replace with your Cloudinary cloud name
     }
   });
-// console.log(item)
-  const itemImage = item.imageId ? cld.image(item.imageId) : null;
-//   console.log(itemImage)
+
+  const itemImage = item.imageId ? cld.image(item.imageId).format('auto').quality('auto') : null;
 
   return (
-    <li className="item">
-      <div className="item-header">
-        <h3>{item.name}</h3>
-        <Link to={`/products/${item.id}`}>View Details</Link>
+    <li className={`item bg-light rounded border-2 list-unstyled p-4 ${dashboardStyle ? 'dashboard-item' : ''}`}>
+      <div className="item-header d-flex flex-column align-items-start justify-content-center">
+        <h3 className="item-title">{item.name}</h3>
+        <p>Description: {item.description}</p>
+        <Link className="item-link" to={`/products/${item.id}`}>View Details</Link>
       </div>
-      <div className="item-content">
-        <div className="item-image">
+      <div className="item-content d-flex align-items-center justify-content-center">
+        <div className="item-image-container d-flex align-items-center justify-content-center h-100">
           {item.imageId ? (
             <AdvancedImage
+              className="item-image"
               cldImg={itemImage}
               plugins={[responsive(), placeholder({mode:'blur'})]}
               alt={item.name}
             />
           ) : (
-            <img src={placeholderImage} alt={item.name} />
+            <img className="item-image" src={placeholderImage} alt={item.name} />
           )}
         </div>
-        <div className="item-details">
-          <p>Description: {item.description}</p>
+        <div className="item-details d-flex flex-column align-items-center justify-content-end ms-3">
           <p>Seller: {item.seller.username}</p>
           <p>Starting Bid: ${item.startingBid.toFixed(2)}</p>
           <p>Current Bid: ${item.currentBid.toFixed(2)}</p>
           <p>High Bidder: {item.highBidder?.username || 'None'}</p>
           <p>Time Remaining: {formattedTimeRemaining}</p>
-        </div>
-        <div className="item-actions">
-          {isSeller && <button onClick={handleAcceptBid}>Accept Bid</button>}
-          {!isSeller && (
-            <form onSubmit={handleBidSubmit}>
-              <input
-                type="number"
-                value={bidValue}
-                min={bidValue}
-                onChange={handleInputChange}
-                required
-              />
-              <button type="submit">Bid {bidValue}</button>
-            </form>
-          )}
+       
+          <div className="item-actions mt-3">
+            {isSeller && <button onClick={handleAcceptBid} className="btn btn-dark">Accept Bid</button>}
+            {!isSeller && (
+              <form onSubmit={handleBidSubmit} className="d-flex">
+                <input
+                  type="number"
+                  value={bidValue}
+                  min={item.currentBid + 1}
+                  onChange={handleInputChange}
+                  required
+                  className="form-control me-2"
+                />
+                <button type="submit" className="btn btn-primary">Place Bid</button>
+              </form>
+            )}
+          </div>
         </div>
       </div>
     </li>
