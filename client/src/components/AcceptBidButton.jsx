@@ -30,7 +30,9 @@ const AcceptBidButton = ({ item }) => {
   };
 
   return (
-    <button className="mini-btn  btn-sm" onClick={handleAcceptBid}>
+
+    <button className="btn btn-warning" onClick={handleAcceptBid}>
+
       Accept Bid
     </button>
   );

@@ -1,11 +1,10 @@
 import React, { useState } from 'react';
 import { useQuery } from '@apollo/client';
 import { GET_ITEMS } from '../graphql/queries';
-import Item from '../components/Item';
-import FileUpload from '../components/FileUpload';
+import MiniItem from '../components/MiniItem';
 
 const ItemList = () => {
-  const { data, loading, error } = useQuery(GET_ITEMS);
+  const { data, loading, error, refetch } = useQuery(GET_ITEMS);
   const [minPrice, setMinPrice] = useState('');
   const [maxPrice, setMaxPrice] = useState('');
   const [searchTerm, setSearchTerm] = useState('');
@@ -33,41 +32,49 @@ const ItemList = () => {
   });
 
   return (
-    <div>
-      <h1>All Items for Sale</h1>
-      <div className="p-3">
+
+    <div className="container mt-4">
+      <h1 className="mb-4">All Items for Sale</h1>
+      <div className="mb-4 d-flex flex-wrap justify-content-start align-items-center">
         <input
           type="text"
-          className="bg-dark-subtle border-0 rounded p-2 m-3"
+          className="form-control me-2 mb-2"
+
           placeholder="Search by name"
           value={searchTerm}
           onChange={handleSearchTermChange}
+          style={{ maxWidth: '200px' }}
         />
         <input
           type="number"
-          className="bg-dark-subtle border-0 rounded p-2 m-3"
+
+          className="form-control me-2 mb-2"
+
           placeholder="Min price"
           value={minPrice}
           onChange={handleMinPriceChange}
+          style={{ maxWidth: '150px' }}
         />
         <input
           type="number"
-          className="bg-dark-subtle border-0 rounded p-2 m-3"
+
+          className="form-control mb-2"
+
           placeholder="Max price"
           value={maxPrice}
           onChange={handleMaxPriceChange}
+          style={{ maxWidth: '150px' }}
         />
       </div>
-      <div className="container">
-        <div className="row">
-          {filteredItems.map(item => (
-            <div key={item.id} className="col-12 col-sm-6 col-md-4 mb-4 d-flex align-items-stretch">
-              <Item item={item}/>
-            </div>
-          ))}
-        </div>
+
+      <div className="row">
+        {filteredItems.map(item => (
+          <div key={item.id} className="col-lg-4 col-md-6 mb-4">
+            <MiniItem item={item} refetch={refetch} />
+          </div>
+        ))}
       </div>
-      <FileUpload />
+
     </div>
   );
 };

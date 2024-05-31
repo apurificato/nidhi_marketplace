@@ -21,7 +21,7 @@ const PayNowButton = ({ item }) => {
   };
 
   return (
-    <button onClick={handlePayNow}>
+    <button className="btn btn-warning" onClick={handlePayNow}>
       Pay Now
     </button>
   );

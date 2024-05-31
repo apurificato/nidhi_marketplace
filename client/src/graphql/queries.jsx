@@ -87,6 +87,7 @@ export const GET_USER_DETAILS = gql`
             id
             username
           }
+          
         }
         isCompleted
       }
@@ -151,6 +152,7 @@ export const GET_ITEMS = gql`
       description
       startingBid
       currentBid
+      imageId
       seller {
         id
         username
@@ -221,3 +223,88 @@ export const GET_BID = gql`
     }
   }
 `;
+
+
+// export const GET_USER_DETAILS = gql`
+//   query GetUserDetails($id: ID!) {
+//     user(id: $id) {
+//       id
+//       username
+//       email
+//       itemsForSale {
+//         id
+//         name
+//         description
+//         startingBid
+//         currentBid
+//         endTime
+//         imageId
+//         seller {
+//           id
+//           username
+//         }
+//         highBidder {
+//           id
+//           username
+//         }
+//         bids {
+//           id
+//           amount
+//           user {
+//             id
+//             username
+//           }
+//         }
+//       }
+//       bids {
+//         id
+//         amount
+//         item {
+//           id
+//           name
+//           description
+//           startingBid
+//           currentBid
+//           endTime
+//           imageId
+//           seller {
+//             id
+//             username
+//           }
+//           highBidder {
+//             id
+//             username
+//           }
+//           isCompleted
+//         }
+//       }
+//       itemsWon {
+//         id
+//         name
+//         description
+//         startingBid
+//         currentBid
+//         endTime
+//         imageId
+//         seller {
+//           id
+//           username
+//         }
+//         highBidder {
+//           id
+//           username
+//         }
+//         bids {
+//           id
+//           amount
+//           user {
+//             id
+//             username
+//           }
+          
+//         }
+//         isCompleted
+//       }
+//     }
+//   }
+// `;
