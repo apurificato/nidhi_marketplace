@@ -8,6 +8,7 @@ import WillDashboard from './pages/WillDashboard'
 import Dashboard from './pages/Dashboard'
 import AuthForm from './pages/AuthForm'
 import ItemList from './pages/ItemsList'
+import ProductPage from './pages/ProductPage'
 import PrivateRoute from './PrivateRoute';
 import { useAuth } from './context/AuthContext';
 
@@ -41,7 +42,9 @@ function App() {
           path="/auth" 
           element={!loggedIn ? <AuthForm /> : <Navigate to="/dashboard" />} 
         />
-       
+
+        <Route path="/products/:id" element={<ProductPage />} />
+
       </Routes>
 
       

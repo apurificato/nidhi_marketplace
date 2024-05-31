@@ -1,10 +1,12 @@
+import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
-import { useState } from 'react';
-import { useAuth } from '../context/AuthContext'; // Adjust the import path as needed
+
+import { useAuth } from '../context/AuthContext'; // Import the useAuth hook
 
 function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
-  const { loggedIn, setLoggedIn } = useAuth(); // Access the loggedIn state and setter
+  const { loggedIn, user, logout } = useAuth(); // Destructure loggedIn, user, and logout from useAuth
+
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
@@ -29,17 +31,19 @@ function Navbar() {
         
         <nav className={`navbar ${isOpen ? 'open' : ''}`}>
           <NavLink to="/about" className="nav-link" onClick={toggleMenu}>About Us</NavLink>
-          {loggedIn && (
-            <NavLink to="/dashboard" className="nav-link" onClick={toggleMenu}>Dashboard</NavLink>
+          {loggedIn ? (
+            <>
+              <NavLink to="/dashboard" className="nav-link" onClick={toggleMenu}>Dashboard</NavLink>
+              <button className="nav-link" onClick={() => { logout(() => toggleMenu()); }}>Logout</button>
+            </>
+          ) : (
+            <NavLink to="/auth" className="nav-link" onClick={toggleMenu}>Login/Register</NavLink>
           )}
-          <NavLink to="/auth" className="nav-link" onClick={toggleLoginStatus}>
-            {loggedIn ? 'Logout' : 'Login/Register'}
-          </NavLink>
         </nav>
       </div>
     </header>
   );
 }
 
-export default Navbar;
 
+export default Navbar;

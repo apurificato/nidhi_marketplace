@@ -1,14 +1,12 @@
 const { User, Item, Bid } = require('../models');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
-// const cookieParser = require('cookie-parser');
 require('dotenv').config();
 
 const resolvers = {
   Query: {
     me: async (parent, args, context) => {
       if (!context.user) throw new Error('Not authenticated');
-      // console.log(context.user.id)
       const user = await User.findById(context.user.id);
       return user;
     },
@@ -24,8 +22,6 @@ const resolvers = {
       const user = new User({ username, email, password });
       await user.save();
       const token = user.generateAuthToken();
-      // console.log(token);
-      // res.cookie('token', token, { httpOnly: true, secure: process.env.NODE_ENV === 'production' });
       return { user, token };
     },
     login: async (_, { email, password }) => {
@@ -34,18 +30,17 @@ const resolvers = {
         throw new Error('Invalid email or password');
       }
       const token = user.generateAuthToken();
-      // console.log(token);
-      // res.cookie('token', token, { httpOnly: true, secure: process.env.NODE_ENV === 'production' });
       return { user, token };
     },
-    createItem: async (_, { userId, name, description, startingBid }) => {
+    createItem: async (_, { userId, name, description, startingBid, imageId }) => {
       const item = new Item({
         name,
         description,
         startingBid,
         currentBid: startingBid,
         seller: userId,
-        endTime: Date.now() + 24 * 60 * 60 * 1000 // 24 hours from now
+        endTime: Date.now() + 24 * 60 * 60 * 1000, // 24 hours from now
+        imageId // Include this field
       });
       await item.save();
 
@@ -74,7 +69,35 @@ const resolvers = {
       await user.save();
 
       return bid;
-    }
+    },
+    acceptBid: async (_, { itemId, userId }, context) => {
+      if (!context.user) {
+        throw new Error('Not authenticated');
+      }
+
+      const item = await Item.findById(itemId).exec();
+      if (!item) {
+        throw new Error('Item not found');
+      }
+
+      if (item.seller.toString() !== context.user.id) {
+        throw new Error('Only the seller can accept bids for their item');
+      }
+
+      item.endTime = new Date().toISOString();
+
+      if (item.highBidder) {
+        const highBidder = await User.findById(item.highBidder).exec();
+        if (highBidder) {
+          highBidder.itemsWon.push(itemId);
+          await highBidder.save();
+        }
+      }
+
+      await item.save();
+
+      return item;
+    },
   },
   User: {
     itemsForSale: (user) => Item.find({ seller: user.id }).exec(),
@@ -85,6 +108,9 @@ const resolvers = {
     }
   },
   Item: {
+    isCompleted: (item) => {
+      return new Date(item.endTime) < new Date();
+    },
     seller: (item) => User.findById(item.seller).exec(),
     highBidder: (item) => User.findById(item.highBidder).exec(),
     bids: (item) => Bid.find({ item: item.id }).exec()

@@ -559,3 +559,47 @@ section #product-post-form {
 }
 
 
+// for wills item component
+
+.item {
+  border: 1px solid #ccc;
+  padding: 10px;
+  margin-bottom: 20px;
+}
+
+.item-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.item-content {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.item-image {
+  flex: 0 0 300px; /* Width of the image column */
+}
+
+.item-image img {
+  width: 40%;
+  height: auto;
+}
+
+.item-details {
+  flex: 1; /* Fill remaining space */
+  margin-left: 10px; /* Add some space between image and details */
+}
+
+.item-actions {
+  flex: 0 0 150px; /* Width of the actions column */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.item-actions button {
+  margin-top: 10px; /* Add some space between buttons */
+}
+
