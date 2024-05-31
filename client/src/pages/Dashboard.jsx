@@ -85,8 +85,8 @@ function Dashboard() {
           <h2>Your Bids</h2>
           {highestBids.length ? (
             <ul>
-              {highestBids.map(bid => (
-                <Item key={bid.item.id} item={bid.item} refetch={refetch} dashboardStyle />
+            {highestBids.filter(bid => !bid.item.isCompleted).map(bid => (
+                <MiniItem key={bid.item.id} item={bid.item} refetch={refetch} />
               ))}
             </ul>
           ) : (
