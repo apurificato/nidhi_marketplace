@@ -30,11 +30,12 @@ export const LOGIN_USER = gql`
 
 // Define a mutation to create a new item
 export const CREATE_ITEM = gql`
-  mutation CreateItem($userId: ID!, $name: String!, $description: String!, $startingBid: Float!) {
-    createItem(userId: $userId, name: $name, description: $description, startingBid: $startingBid) {
+  mutation CreateItem($userId: ID!, $name: String!, $description: String!, $startingBid: Float!, $imageId: String!) {
+    createItem(userId: $userId, name: $name, description: $description, startingBid: $startingBid, imageId: $imageId) {
       id
       name
       description
+      imageId
       startingBid
       currentBid
       seller {
@@ -45,6 +46,7 @@ export const CREATE_ITEM = gql`
     }
   }
 `;
+
 
 // Define a mutation to place a bid on an item
 

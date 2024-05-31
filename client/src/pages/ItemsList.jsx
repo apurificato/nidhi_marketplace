@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useQuery } from '@apollo/client';
 import { GET_ITEMS } from '../graphql/queries';
 import Item from '../components/Item';
+import FileUpload from '../components/FileUpload';
 
 const ItemList = () => {
   const { data, loading, error } = useQuery(GET_ITEMS);
@@ -59,6 +60,7 @@ const ItemList = () => {
           <Item key={item.id} item={item} />
         ))}
       </ul>
+      <FileUpload />
     </div>
   );
 };

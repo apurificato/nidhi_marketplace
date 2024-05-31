@@ -10,7 +10,7 @@ function Dashboard() {
   const { user } = useAuth();
   const [userDetails, setUserDetails] = useState(null);
 
-  const { data, loading, error } = useQuery(GET_USER_DETAILS, {
+  const { data, loading, error, refetch } = useQuery(GET_USER_DETAILS, {
     variables: { id: user?.id },
     skip: !user,
     onCompleted: (data) => {
@@ -26,15 +26,30 @@ function Dashboard() {
     }
   }, [user]);
 
+  const getHighestBids = (bids) => {
+    const highestBids = {};
+
+    bids.forEach(bid => {
+      const itemId = bid.item.id;
+      if (!highestBids[itemId] || highestBids[itemId].amount < bid.amount) {
+        highestBids[itemId] = bid;
+      }
+    });
+
+    return Object.values(highestBids);
+  };
+
   if (loading) return <div>Loading...</div>;
   if (error) return <div>Error loading user details</div>;
+
+  const highestBids = userDetails ? getHighestBids(userDetails.bids) : [];
 
   return (
     <section>
       <div className="dashboard">
-        <div className="carousel-container">
+        {/* <div className="carousel-container">
           <ImageSlider />
-        </div>
+        </div> */}
         <div className="dash-container">
           <div className="left-column">
             <div className="user-card">
@@ -47,7 +62,7 @@ function Dashboard() {
           </div>
           <div className='right-column'>
             <h2>Looking to Sell Some Products On Our Site?</h2>
-            <ProductForm />
+            <ProductForm refetch={refetch} />
           </div>
         </div>
       </div>
@@ -58,7 +73,7 @@ function Dashboard() {
           {userDetails?.itemsForSale.length ? (
             <ul>
               {userDetails.itemsForSale.map(item => (
-                <Item key={item.id} item={item} />
+                <Item key={item.id} item={item} refetch={refetch} />
               ))}
             </ul>
           ) : (
@@ -68,10 +83,10 @@ function Dashboard() {
 
         <div id='items-col-2'>
           <h2>Your Bids</h2>
-          {userDetails?.bids.length ? (
+          {highestBids.length ? (
             <ul>
-              {userDetails.bids.map(bid => (
-                <Item key={bid.item.id} item={bid.item} />
+              {highestBids.map(bid => (
+                <Item key={bid.item.id} item={bid.item} refetch={refetch} />
               ))}
             </ul>
           ) : (
@@ -87,7 +102,7 @@ function Dashboard() {
               {userDetails.itemsWon
                 .filter(item => item.isCompleted && item.highBidder.id === user.id)
                 .map(item => (
-                  <Item key={item.id} item={item} />
+                  <Item key={item.id} item={item} refetch={refetch} />
                 ))}
             </ul>
           ) : (
