@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
@@ -48,6 +50,9 @@ a:hover {
 h1 {
   font-size: 3.2em;
   line-height: 1.1;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 600;
+  padding: 5px;
 }
 
 h2 {
@@ -571,32 +576,46 @@ section #product-post-form {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 500;
+}
+
+.item-title {
+  font-family: "Montserrat", sans-serif;
+  font-weight: 700;
+}
+
+.item-link {
+  font-family: "Montserrat", sans-serif;
+  font-weight: 600;
 }
 
 .item-content {
   display: flex;
   flex-wrap: wrap;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 700;
+}
+
+.item-image-container {
+  overflow: hidden;
 }
 
 .item-image {
-  flex: 0 0 300px; /* Width of the image column */
+ max-height: 200px;
+ border-radius: 15px;
 }
 
 .item-image img {
   width: 40%;
   height: auto;
-}
-
-.item-details {
-  flex: 1; /* Fill remaining space */
-  margin-left: 10px; /* Add some space between image and details */
+  
 }
 
 .item-actions {
-  flex: 0 0 150px; /* Width of the actions column */
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+  flex: 0 0 50px;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 500;
 }
 
 .item-actions button {

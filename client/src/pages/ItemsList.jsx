@@ -35,29 +35,32 @@ const ItemList = () => {
   return (
     <div>
       <h1>All Items for Sale</h1>
-      <div>
+      <div className=" p-3">
         <input
           type="text"
+          className=" bg-dark-subtle border-0 rounded p-2 m-3"
           placeholder="Search by name"
           value={searchTerm}
           onChange={handleSearchTermChange}
         />
         <input
           type="number"
+          className=" bg-dark-subtle border-0 rounded p-2 m-3"
           placeholder="Min price"
           value={minPrice}
           onChange={handleMinPriceChange}
         />
         <input
           type="number"
+          className=" bg-dark-subtle border-0 rounded p-2 m-3"
           placeholder="Max price"
           value={maxPrice}
           onChange={handleMaxPriceChange}
         />
       </div>
-      <ul>
+      <ul className="d-flex flex-column align-items-center">
         {filteredItems.map(item => (
-          <Item key={item.id} item={item} />
+          <Item key={item.id} item={item}/>
         ))}
       </ul>
       <FileUpload />
