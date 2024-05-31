@@ -1,13 +1,19 @@
 import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
+
 import { useAuth } from '../context/AuthContext'; // Import the useAuth hook
 
 function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const { loggedIn, user, logout } = useAuth(); // Destructure loggedIn, user, and logout from useAuth
 
+
   const toggleMenu = () => {
     setIsOpen(!isOpen);
+  };
+
+  const toggleLoginStatus = () => {
+    setLoggedIn(!loggedIn); // Toggle the login status for demonstration
   };
 
   return (
@@ -38,5 +44,6 @@ function Navbar() {
     </header>
   );
 }
+
 
 export default Navbar;
