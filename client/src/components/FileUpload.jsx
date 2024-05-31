@@ -28,11 +28,11 @@ export default function FileUpload({ setImageId }) {
   };
 
   return (
-    <div className="App">
-      <h3>Cloudinary Upload Widget Example</h3>
+    <div className="App text-center">
       <CloudinaryUploadWidget uwConfig={uwConfig} setPublicId={handleUploadSuccess} />
       <div style={{ width: "800px" }}>
         <AdvancedImage
+        className="bg-info"
           style={{ maxWidth: "300px" }}
           cldImg={myImage}
           plugins={[responsive(), placeholder()]}

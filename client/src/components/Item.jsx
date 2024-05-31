@@ -1,4 +1,3 @@
-// Item.js
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
@@ -38,8 +37,7 @@ const Item = ({ item, refetch, dashboardStyle }) => {
           amount: bidValue,
         }
       });
-    //   refetch();
-      setBidValue(bidValue+1)
+      setBidValue(bidValue + 1);
     } catch (error) {
       console.error('Error placing bid:', error);
     }
@@ -109,34 +107,34 @@ const Item = ({ item, refetch, dashboardStyle }) => {
   const itemImage = item.imageId ? cld.image(item.imageId).format('auto').quality('auto') : null;
 
   return (
-    <li className={`item bg-light rounded border-2 list-unstyled p-4 ${dashboardStyle ? 'dashboard-item' : ''}`}>
-      <div className="item-header d-flex flex-column align-items-start justify-content-center">
+    <li className="item bg-light rounded border-2 list-unstyled h-100">
+      <div className="item-header d-flex flex-column align-items-center justify-content-center">
         <h3 className="item-title">{item.name}</h3>
         <p>Description: {item.description}</p>
         <Link className="item-link" to={`/products/${item.id}`}>View Details</Link>
       </div>
-      <div className="item-content d-flex align-items-center justify-content-center">
+      <div className="item-content d-flex align-items-around flex-column justify-content-center p-2">
         <div className="item-image-container d-flex align-items-center justify-content-center h-100">
           {item.imageId ? (
             <AdvancedImage
               className="item-image"
               cldImg={itemImage}
-              plugins={[responsive(), placeholder({mode:'blur'})]}
+              plugins={[responsive(), placeholder({ mode: 'blur' })]}
               alt={item.name}
             />
           ) : (
-            <img className="item-image" src={placeholderImage} alt={item.name} />
+            <img className="item-image img-fluid" src={placeholderImage} alt={item.name} />
           )}
         </div>
-        <div className="item-details d-flex flex-column align-items-center justify-content-end ms-3">
-          <p>Seller: {item.seller.username}</p>
-          <p>Starting Bid: ${item.startingBid.toFixed(2)}</p>
-          <p>Current Bid: ${item.currentBid.toFixed(2)}</p>
-          <p>High Bidder: {item.highBidder?.username || 'None'}</p>
-          <p>Time Remaining: {formattedTimeRemaining}</p>
+        <div className="item-details ms-3 mt-3">
+          <p className="text-sm">Seller: {item.seller.username}</p>
+          <p className="text-sm">Starting Bid: ${item.startingBid.toFixed(2)}</p>
+          <p className="text-sm">Current Bid: ${item.currentBid.toFixed(2)}</p>
+          <p className="text-sm">High Bidder: {item.highBidder?.username || 'None'}</p>
+          <p className="text-sm">⏳: {formattedTimeRemaining}</p>
        
           <div className="item-actions mt-3">
-            {isSeller && <button onClick={handleAcceptBid} className="btn btn-dark">Accept Bid</button>}
+            {isSeller && <button onClick={handleAcceptBid} className="btn btn-info mb-3">Accept Bid</button>}
             {!isSeller && (
               <form onSubmit={handleBidSubmit} className="d-flex">
                 <input
@@ -158,3 +156,5 @@ const Item = ({ item, refetch, dashboardStyle }) => {
 };
 
 export default Item;
+
+

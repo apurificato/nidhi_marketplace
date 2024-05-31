@@ -13,9 +13,12 @@ const AuctionImage = ({ imageId, itemName }) => {
   const itemImage = imageId ? cld.image(imageId) : null;
 
   return (
+
     <div className="d-flex justify-content-center">
+
       {itemImage ? (
         <AdvancedImage
+        className="item-image"
           cldImg={itemImage}
           plugins={[responsive(), placeholder({ mode: 'blur' })]}
           alt={itemName}

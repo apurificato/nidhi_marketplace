@@ -32,12 +32,14 @@ const ItemList = () => {
   });
 
   return (
+
     <div className="container mt-4">
       <h1 className="mb-4">All Items for Sale</h1>
       <div className="mb-4 d-flex flex-wrap justify-content-start align-items-center">
         <input
           type="text"
           className="form-control me-2 mb-2"
+
           placeholder="Search by name"
           value={searchTerm}
           onChange={handleSearchTermChange}
@@ -45,7 +47,9 @@ const ItemList = () => {
         />
         <input
           type="number"
+
           className="form-control me-2 mb-2"
+
           placeholder="Min price"
           value={minPrice}
           onChange={handleMinPriceChange}
@@ -53,13 +57,16 @@ const ItemList = () => {
         />
         <input
           type="number"
+
           className="form-control mb-2"
+
           placeholder="Max price"
           value={maxPrice}
           onChange={handleMaxPriceChange}
           style={{ maxWidth: '150px' }}
         />
       </div>
+
       <div className="row">
         {filteredItems.map(item => (
           <div key={item.id} className="col-lg-4 col-md-6 mb-4">
@@ -67,6 +74,7 @@ const ItemList = () => {
           </div>
         ))}
       </div>
+
     </div>
   );
 };

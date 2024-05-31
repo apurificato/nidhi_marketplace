@@ -7,13 +7,14 @@ import BidButton from './BidButton';
 import AcceptBidButton from './AcceptBidButton';
 import PayNowButton from './PayNowButton';
 
-const MiniItem = ({ item, refetch }) => {
+const MiniItem = ({ item }) => {
     const [bidValue, setBidValue] = useState(item.currentBid + 1);
     const { user } = useAuth();
     const isSeller = user.id === item.seller.id;
     const isCompleted = item.isCompleted;
 
     return (
+
         <div className="card mb-3 mini-item">
             <div className="card-header d-flex justify-content-between align-items-center">
                 <h5 className="mb-0">{item.name}</h5>
@@ -40,6 +41,7 @@ const MiniItem = ({ item, refetch }) => {
                 </div>
             </div>
         </div>
+
     );
 };
 

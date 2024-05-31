@@ -53,10 +53,12 @@ function Dashboard() {
             <h5>What are you looking for today?</h5>
           </div>
         </div>
+
         <div className="col-md-6 d-flex align-items-center justify-content-end">
           <button className="btn btn-primary" onClick={() => setIsModalOpen(true)}>Sell Product</button>
         </div>
       </div>
+
 
       <div className="row">
         <div className="col-lg-4 mb-4">
@@ -64,9 +66,11 @@ function Dashboard() {
           {userDetails?.itemsForSale.length ? (
             <ul className="list-unstyled">
               {userDetails.itemsForSale.map(item => (
+
                 <li key={item.id} className="mb-3">
                   <MiniItem item={item} refetch={refetch} />
                 </li>
+
               ))}
             </ul>
           ) : (
@@ -77,11 +81,13 @@ function Dashboard() {
         <div className="col-lg-4 mb-4">
           <h2>Bidding</h2>
           {highestBids.length ? (
+
             <ul className="list-unstyled">
               {highestBids.filter(bid => !bid.item.isCompleted).map(bid => (
                 <li key={bid.item.id} className="mb-3">
                   <MiniItem item={bid.item} refetch={refetch} />
                 </li>
+
               ))}
             </ul>
           ) : (

@@ -30,7 +30,10 @@ function App() {
       <Routes>
         <Route path="/" element={<Home user={user}/>} />
         <Route path="/about" element={<About />} />
-        <Route path="/item-sales" element={<ItemList />} />
+        <Route 
+          path="/item-sales" 
+          element={<PrivateRoute element={<ItemList />} />} 
+        />
         <Route 
           path="/add-product"
           element={<PrivateRoute element={<AddProduct />} />}
