@@ -38,6 +38,7 @@ function Navbar() {
             <>
               <NavLink to="/add-product" className="nav-link" onClick={toggleMenu}>Add Product</NavLink>
               <NavLink to="/dashboard" className="nav-link" onClick={toggleMenu}>Dashboard</NavLink>
+              <NavLink to="/forsale" className="nav-link" onClick={toggleMenu}>Items</NavLink>
               <button className="nav-link" onClick={() => { logout(() => toggleMenu()); }}>Logout</button>
             </>
           ) : (
