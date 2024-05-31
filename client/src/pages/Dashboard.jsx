@@ -5,6 +5,7 @@ import { GET_USER_DETAILS } from '../graphql/queries';
 import ProductForm from "../components/ProductForm";
 import ImageSlider from "../components/Carousel";
 import Item from '../components/Item'; // Import the Item component
+import MiniItem from '../components/MiniItem';
 
 function Dashboard() {
   const { user } = useAuth();
@@ -45,6 +46,8 @@ function Dashboard() {
 
   const highestBids = userDetails ? getHighestBids(userDetails.bids) : [];
 
+  console.log(userDetails)
+
   return (
     <section>
       <div className="dashboard">
@@ -74,7 +77,7 @@ function Dashboard() {
           {userDetails?.itemsForSale.length ? (
             <ul>
               {userDetails.itemsForSale.map(item => (
-                <Item key={item.id} item={item} refetch={refetch} />
+                <MiniItem key={item.id} item={item} refetch={refetch} />
               ))}
             </ul>
           ) : (
@@ -86,8 +89,8 @@ function Dashboard() {
           <h2>Your Bids</h2>
           {highestBids.length ? (
             <ul>
-              {highestBids.map(bid => (
-                <Item key={bid.item.id} item={bid.item} refetch={refetch} />
+              {highestBids.filter(bid => !bid.item.isCompleted).map(bid => (
+                <MiniItem key={bid.item.id} item={bid.item} refetch={refetch} />
               ))}
             </ul>
           ) : (
@@ -103,7 +106,7 @@ function Dashboard() {
               {userDetails.itemsWon
                 .filter(item => item.isCompleted && item.highBidder.id === user.id)
                 .map(item => (
-                  <Item key={item.id} item={item} refetch={refetch} />
+                  <MiniItem key={item.id} item={item} refetch={refetch} />
                 ))}
             </ul>
           ) : (

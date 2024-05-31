@@ -22,6 +22,7 @@ const ProductItem = ({ item }) => {
 
   const handleBidSubmit = async (event) => {
     event.preventDefault();
+    console.log('test')
     try {
       await placeBid({
         variables: {
@@ -30,6 +31,7 @@ const ProductItem = ({ item }) => {
           amount: bidValue,
         }
       });
+      setBidValue(bidValue+1)
     } catch (error) {
       console.error('Error placing bid:', error);
     }

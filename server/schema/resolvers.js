@@ -11,7 +11,11 @@ const resolvers = {
       return user;
     },
     users: () => User.find().exec(),
-    user: (_, { id }) => User.findById(id).exec(),
+    user: async (_, { id }) => {
+      const user = await User.findById(id)
+      console.log(user)
+      return user
+  },
     items: () => Item.find().exec(),
     item: (_, { id }) => Item.findById(id).exec(),
     bids: () => Bid.find().exec(),
@@ -102,10 +106,8 @@ const resolvers = {
   User: {
     itemsForSale: (user) => Item.find({ seller: user.id }).exec(),
     bids: (user) => Bid.find({ user: user.id }).exec(),
-    itemsWon: async (user) => {
-      const wonBids = await Bid.find({ user: user.id }).populate('item').exec();
-      return wonBids.map(bid => bid.item).filter(item => item.highBidder && item.highBidder.toString() === user.id);
-    }
+    itemsWon: (user) => Item.find({ highBidder: user.id}).exec()
+    
   },
   Item: {
     isCompleted: (item) => {
