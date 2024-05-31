@@ -2,10 +2,10 @@
 function Footer() {
     return (
     <footer className="footer">
-        <div className='brand'>
+        <div className="brand pt-3">
             <p className="footer-t">&copy;Copyright 2024</p>
             <a href='https://www.github.com/apurificato/Bidding-Site'>
-                 <img className="footer-logo-item" src='/Github-logo.svg'></img>
+                 <img id="footer-logo-item" src='/Github-logo.svg'/>
             </a>
             <p>Developed by VG, WG, MA, & AP</p>
         </div>

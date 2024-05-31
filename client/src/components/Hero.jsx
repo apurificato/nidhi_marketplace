@@ -4,8 +4,8 @@ function Hero() {
     return (
         <section className="hero">
 
-            <div className="title-section">
-                <h1>One Persons Junk is Another Persons Treasure.</h1>
+            <div className="title-section pb-5">
+                <h1>One Persons Junk is Anothers Treasure.</h1>
             </div>
 
             <div id="hero-button">
