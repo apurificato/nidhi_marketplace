@@ -38,7 +38,7 @@ function Dashboard() {
 
     return(
 <section>
-<div className="dashboard">
+<div className="dashboard ">
   <div className="carousel-container">
     <ImageSlider />
   </div>
@@ -63,7 +63,7 @@ function Dashboard() {
         </aside>
     </div>
     <div className='right-column'>
-    <h2>Looking to Sell Some Products On Our Site?</h2>
+    <h4>Looking to Sell Some Products On Our Site?</h4>
       <ProductForm />
     </div>
   </div>

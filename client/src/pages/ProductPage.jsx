@@ -14,7 +14,7 @@ function ProductPage({itemId}) {
     
 
    
-
+       
         return (
                 <section id="product-page" className="product-page">
                   <div>

@@ -96,7 +96,7 @@ function ProductForm() {
               required
             />
           </div>
-
+          <div>
           <input
             type="number"
             id="startingBid"
