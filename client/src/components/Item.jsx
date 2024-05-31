@@ -37,7 +37,8 @@ const Item = ({ item, refetch }) => {
           amount: bidValue,
         }
       });
-      refetch();
+    //   refetch();
+      setBidValue(bidValue+1)
     } catch (error) {
       console.error('Error placing bid:', error);
     }
@@ -126,7 +127,7 @@ const Item = ({ item, refetch }) => {
           {item.imageId ? (
             <AdvancedImage
               cldImg={itemImage}
-              plugins={[responsive(), placeholder()]}
+              plugins={[responsive(), placeholder({mode:'blur'})]}
               alt={item.name}
             />
           ) : (
@@ -148,11 +149,11 @@ const Item = ({ item, refetch }) => {
               <input
                 type="number"
                 value={bidValue}
-                min={item.currentBid + 1}
+                min={bidValue}
                 onChange={handleInputChange}
                 required
               />
-              <button type="submit">Place Bid</button>
+              <button type="submit">Bid {bidValue}</button>
             </form>
           )}
         </div>

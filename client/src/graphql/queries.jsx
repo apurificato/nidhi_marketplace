@@ -61,6 +61,7 @@ export const GET_USER_DETAILS = gql`
             id
             username
           }
+          isCompleted
         }
       }
       itemsWon {
