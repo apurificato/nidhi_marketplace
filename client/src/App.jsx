@@ -28,8 +28,11 @@ function App() {
 
       <Routes>
         <Route path="/" element={<Home user={user}/>} />
+
         <Route path="/about" element={<About />} />
-        <Route path="/forsale" element={<ItemList />} />
+
+        <Route path="/forsale" element={<ItemList />}   />
+
         <Route 
           path="/dashboard" 
           element={<PrivateRoute element={<Dashboard />} />} 

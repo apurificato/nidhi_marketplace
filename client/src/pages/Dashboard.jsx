@@ -37,7 +37,6 @@ function Dashboard() {
       }
     });
 
-
     return Object.values(highestBids);
   };
 
@@ -51,9 +50,6 @@ function Dashboard() {
   return (
     <section>
       <div className="dashboard">
-        {/* <div className="carousel-container">
-          <ImageSlider />
-        </div> */}
         <div className="dash-container">
           <div className="left-column">
             <div className="user-card">
@@ -72,12 +68,12 @@ function Dashboard() {
       </div>
 
       <div className='user-sales-bids-section'>
-        <div id='items-col-1'>
+        <div id='items-col-1' className='d-flex flex-column align-items-center'>
           <h2>Items for Sale</h2>
           {userDetails?.itemsForSale.length ? (
-            <ul>
+            <ul className="d-flex flex-column align-items-center justify-content-center">
               {userDetails.itemsForSale.map(item => (
-                <MiniItem key={item.id} item={item} refetch={refetch} />
+                <Item key={item.id} item={item} refetch={refetch} dashboardStyle />
               ))}
             </ul>
           ) : (
@@ -89,7 +85,7 @@ function Dashboard() {
           <h2>Your Bids</h2>
           {highestBids.length ? (
             <ul>
-              {highestBids.filter(bid => !bid.item.isCompleted).map(bid => (
+            {highestBids.filter(bid => !bid.item.isCompleted).map(bid => (
                 <MiniItem key={bid.item.id} item={bid.item} refetch={refetch} />
               ))}
             </ul>
@@ -106,7 +102,7 @@ function Dashboard() {
               {userDetails.itemsWon
                 .filter(item => item.isCompleted && item.highBidder.id === user.id)
                 .map(item => (
-                  <MiniItem key={item.id} item={item} refetch={refetch} />
+                  <Item key={item.id} item={item} refetch={refetch} dashboardStyle />
                 ))}
             </ul>
           ) : (
@@ -118,8 +114,8 @@ function Dashboard() {
   );
 }
 
-
 export default Dashboard;
+
 // import React, { useState, useEffect } from 'react';
 // import { useAuth } from '../context/AuthContext';
 
