@@ -63,7 +63,6 @@ function Dashboard() {
             <button onClick={() => setIsModalOpen(true)}>Sell Product</button>
           </div>
         </div>
-      </div>
 
       <div className='user-sales-bids-section'>
         <div id='items-col-1' className='d-flex flex-column align-items-center'>
@@ -71,7 +70,7 @@ function Dashboard() {
           {userDetails?.itemsForSale.length ? (
             <ul className="d-flex flex-column align-items-center justify-content-center">
               {userDetails.itemsForSale.map(item => (
-                <Item key={item.id} item={item} refetch={refetch} dashboardStyle />
+                <MiniItem key={item.id} item={item} refetch={refetch} />
               ))}
             </ul>
           ) : (
@@ -84,7 +83,7 @@ function Dashboard() {
           {highestBids.length ? (
             <ul>
             {highestBids.filter(bid => !bid.item.isCompleted).map(bid => (
-                <MiniItem key={bid.item.id} item={bid.item} refetch={refetch} />
+              <Item key={bid.item.id} item={bid.item} refetch={refetch}  />
               ))}
             </ul>
           ) : (

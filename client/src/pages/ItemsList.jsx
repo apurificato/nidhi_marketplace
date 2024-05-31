@@ -35,34 +35,38 @@ const ItemList = () => {
   return (
     <div>
       <h1>All Items for Sale</h1>
-      <div className=" p-3">
+      <div className="p-3">
         <input
           type="text"
-          className=" bg-dark-subtle border-0 rounded p-2 m-3"
+          className="bg-dark-subtle border-0 rounded p-2 m-3"
           placeholder="Search by name"
           value={searchTerm}
           onChange={handleSearchTermChange}
         />
         <input
           type="number"
-          className=" bg-dark-subtle border-0 rounded p-2 m-3"
+          className="bg-dark-subtle border-0 rounded p-2 m-3"
           placeholder="Min price"
           value={minPrice}
           onChange={handleMinPriceChange}
         />
         <input
           type="number"
-          className=" bg-dark-subtle border-0 rounded p-2 m-3"
+          className="bg-dark-subtle border-0 rounded p-2 m-3"
           placeholder="Max price"
           value={maxPrice}
           onChange={handleMaxPriceChange}
         />
       </div>
-      <ul className="d-flex flex-column align-items-center">
-        {filteredItems.map(item => (
-          <Item key={item.id} item={item}/>
-        ))}
-      </ul>
+      <div className="container">
+        <div className="row">
+          {filteredItems.map(item => (
+            <div key={item.id} className="col-12 col-sm-6 col-md-4 mb-4 d-flex align-items-stretch">
+              <Item item={item}/>
+            </div>
+          ))}
+        </div>
+      </div>
       <FileUpload />
     </div>
   );

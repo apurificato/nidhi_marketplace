@@ -46,8 +46,8 @@ const AuctionTimer = ({ item }) => {
   const formattedTimeRemaining = renderTimeRemaining(timeRemaining);
 
   return (
-    <div>
-      Time Remaining: {formattedTimeRemaining}
+    <div className="mini-item-timer">
+      <p className="" >⏳: {formattedTimeRemaining}</p>
     </div>
   );
 };

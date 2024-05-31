@@ -70,11 +70,12 @@ function ProductForm({ refetch }) {
 
 
   return (
-    <section id="product-post-form">
-      <h3>Fill Out Form to List an Item</h3>
-      <form onSubmit={handleSubmit}>
-        <div>
+    <section id="product-post-form" >
+      
+      <form onSubmit={handleSubmit} className="d-flex align-items-center justify-content-center flex-column">
+        <div className='p-2'>
           <input
+          className="bg-dark-subtle border-0 rounded p-3 "
             type="text"
             id="name"
             name="name"
@@ -84,8 +85,9 @@ function ProductForm({ refetch }) {
             required
           />
         </div>
-        <div>
+        <div className='p-2'>
           <textarea
+          className="text-bg-dark border-0 rounded p-3 color-light"
             id="description"
             name="description"
             placeholder="description"
@@ -95,9 +97,10 @@ function ProductForm({ refetch }) {
             required
           ></textarea>
         </div>
-        <div>
+        <div className='p-2'>
 
           <input
+          className="bg-dark-subtle border-0 rounded p-3"
             type="number"
             id="startingBid"
             name="startingBid"
@@ -107,7 +110,7 @@ function ProductForm({ refetch }) {
             required
           />
         </div>
-        <FileUpload setImageId={handleImageUpload} />
+        <FileUpload setImageId={handleImageUpload}  />
         <input type="hidden" name="userId" value={formData.userId} />
         <button type="submit" onClick={handleClose}>Submit</button>
       </form>
