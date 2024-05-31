@@ -18,6 +18,9 @@ function ProductForm({ refetch }) {
   const { user } = useAuth();
   const navigate = useNavigate();
 
+  const [setShow] = useState(false);
+  const handleClose = () => setShow(false);
+
   useEffect(() => {
     if (user) {
       setFormData((prevData) => ({ ...prevData, userId: user.id }));
@@ -106,7 +109,7 @@ function ProductForm({ refetch }) {
         </div>
         <FileUpload setImageId={handleImageUpload} />
         <input type="hidden" name="userId" value={formData.userId} />
-        <button type="submit">Submit</button>
+        <button type="submit" onClick={handleClose}>Submit</button>
       </form>
     </section>
   );

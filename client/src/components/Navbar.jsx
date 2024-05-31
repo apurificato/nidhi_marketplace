@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 
 import { useAuth } from '../context/AuthContext'; // Import the useAuth hook
@@ -27,12 +27,16 @@ function Navbar() {
           <span className="hamburger-line"></span>
           <span className="hamburger-line"></span>
           <span className="hamburger-line"></span>
+          <span className="hamburger-line"></span>
+          <span className="hamburger-line"></span>
         </button>
         
         <nav className={`navbar ${isOpen ? 'open' : ''}`}>
           <NavLink to="/about" className="nav-link" onClick={toggleMenu}>About Us</NavLink>
+          <NavLink to="/item-sales" className="nav-link" onClick={toggleMenu}>For Sale</NavLink>
           {loggedIn ? (
             <>
+              <NavLink to="/add-product" className="nav-link" onClick={toggleMenu}>Add Product</NavLink>
               <NavLink to="/dashboard" className="nav-link" onClick={toggleMenu}>Dashboard</NavLink>
               <NavLink to="/forsale" className="nav-link" onClick={toggleMenu}>Items</NavLink>
               <button className="nav-link" onClick={() => { logout(() => toggleMenu()); }}>Logout</button>

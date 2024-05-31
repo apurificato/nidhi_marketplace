@@ -1,9 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { useAuth } from '../context/AuthContext';
 import { useQuery } from '@apollo/client';
 import { GET_USER_DETAILS } from '../graphql/queries';
-import ProductForm from "../components/ProductForm";
-import ImageSlider from "../components/Carousel";
+import AddProduct from "../pages/AddProduct";
 import Item from '../components/Item'; // Import the Item component
 import MiniItem from '../components/MiniItem';
 
@@ -50,11 +49,11 @@ function Dashboard() {
     <section>
       <div className="dashboard">
         <div className="dash-container">
-          <div className="left-column">
             <div className="user-card">
               <h3>Hi, {user.username}</h3>
               <h5>What are you looking for today?</h5>
             </div>
+
             <aside className="categories-table">
               {/* Add your categories here */}
             </aside>

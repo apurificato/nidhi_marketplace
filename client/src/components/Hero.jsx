@@ -9,8 +9,8 @@ function Hero() {
             </div>
 
             <div id="hero-button">
-                <a href="/about">
-                    <button type="button">Learn More</button>
+                <a href="/item-sales">
+                    <button type="button">Open Treasure Chest</button>
                 </a>
             </div>
 
