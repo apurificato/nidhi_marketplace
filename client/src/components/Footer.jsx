@@ -1,7 +1,7 @@
 
 function Footer() {
     return (
-    <footer className="footer">
+    <footer className="footer bg-dark text-light">
         <div className="brand pt-3">
             <p className="footer-t">&copy;Copyright 2024</p>
             <a href='https://www.github.com/apurificato/Bidding-Site'>
