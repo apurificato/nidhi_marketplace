@@ -1,8 +1,3 @@
-// import React from 'react';
-// import { useParams } from 'react-router-dom';
-// import { useQuery } from '@apollo/client';
-// import { GET_ITEM } from '../graphql/queries';
-
 import { useQuery } from '@apollo/client';
 import { useParams } from 'react-router-dom';
 import { GET_ITEM } from '../graphql/queries';

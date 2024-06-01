@@ -34,7 +34,7 @@ const ItemList = () => {
   return (
 
     <div className="container mt-4">
-      <h1 className="mb-4">All Items for Sale</h1>
+      <h1 className="display-3 mb-4 py-5">All Items for Sale</h1>
       <div className="mb-4 d-flex flex-wrap justify-content-start align-items-center">
         <input
           type="text"

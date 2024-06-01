@@ -5,7 +5,7 @@ function Hero() {
         <section className="hero">
 
             <div className="title-section pb-5">
-                <h1>One Persons Junk is Anothers Treasure.</h1>
+                <h1 className="display-3">One Persons Junk is Anothers Treasure.</h1>
             </div>
 
             <div id="hero-button">
