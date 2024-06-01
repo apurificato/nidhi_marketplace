@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
 
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-family: Arial, Helvetica, sans-serif;
   line-height: 1.5;
   font-weight: 400;
 
@@ -50,7 +50,7 @@ a:hover {
 h1 {
   font-size: 3.2em;
   line-height: 1.1;
-  font-family: "Montserrat", sans-serif;
+  font-family: Arial, Helvetica, sans-serif;
   font-weight: 600;
   padding: 5px;
 }
@@ -487,26 +487,26 @@ section #product-post-form {
 
 // Carousel 
 
-// .carousel-container {
-//   display: flex;
-//   flex-direction: row;
-//   justify-content: center;
-// }
+.carousel-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
 
-// .image-slider-container {
-//   padding: 5%;
-//   width: 80%;
-//   align-items: center;
+.image-slider-container {
+  padding: 5%;
+  width: 100%;
+  align-items: center;
 
-//   img {
-//   width: 70%; 
-//   height: auto;
-//   display: block; 
-//   margin: 0 auto;
-//   border-radius: 20px;
-//   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1), 0 6px 20px rgba(0, 0, 0, 0.1);
-//   }
-// }
+  img {
+  width: 70%; 
+  height: auto;
+  display: block; 
+  margin: 0 auto;
+  border-radius: 20px;
+  // box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1), 0 6px 20px rgba(0, 0, 0, 0.1);
+  }
+}
 
 
 

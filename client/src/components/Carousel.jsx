@@ -35,16 +35,16 @@ export default function ImageSlider() {
     <div className="image-slider-container">
       <Slider {...settings}>
         <div>
-          <img src="https://www.shrm.org/topics-tools/news/hr-magazine/ask-expert-whiff-weed/_jcr_content/_cq_featuredimage.coreimg.jpeg/1703128193176/istock-1442479025-nrh1c9.jpeg" />
+          <img src="/Summer-hat.png" />
         </div>
         <div>
-          <img src="https://bloximages.newyork1.vip.townnews.com/stltoday.com/content/tncms/assets/v3/editorial/7/f6/7f649ede-22a6-5735-a4fa-9307f0fe9cd8/63ea615255ded.preview.jpg?crop=1763%2C926%2C0%2C124&resize=1200%2C630&order=crop%2Cresize" />
+          <img src="/Jewelry-set.png" />
         </div>
         <div>
-          <img src="https://media.post.rvohealth.io/wp-content/uploads/sites/3/2024/01/Marijuana-joints-with-cannabis-laying-on-wooden-tray-header-1024x575.jpg" />
+          <img src="/Laptop.png" />
         </div>
         <div>
-          <img src="https://josephhollander.com/cdn-cgi/image/quality=90,gravity=auto,sharpen=1,metadata=none,format=auto,onerror=redirect/wp-content/uploads/2022/10/marijuana.jpg" />
+          <img src="/Running-shoes.png" />
         </div>
       </Slider>
     </div>
