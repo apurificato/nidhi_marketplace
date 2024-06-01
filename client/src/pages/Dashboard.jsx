@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { useAuth } from '../context/AuthContext';
 import { useQuery } from '@apollo/client';
 import { GET_USER_DETAILS } from '../graphql/queries';
@@ -47,15 +47,25 @@ function Dashboard() {
   return (
     <section className="container my-4">
       <div className="row mb-4">
-        <div className="col-md-6">
-          <div className="card p-3">
-            <h3>Hi, {user.username}</h3>
-            <h5>What are you looking for today?</h5>
+        <div className="col-md-4 d-flex justify-content-center py-3">
+          <div className="card bg-dark text-light p-3 w-75">
+            <h3>Hi, <span className="text-warning">{user.username}</span></h3>
+            <h5 className="text-light">What are you looking for today?</h5>
           </div>
         </div>
 
-        <div className="col-md-6 d-flex align-items-center justify-content-end">
-          <button className="btn btn-primary" onClick={() => setIsModalOpen(true)}>Sell Product</button>
+        <div className="col-md-4 d-flex align-items-center justify-content-center py-3">
+          <div className="d-flex flex-column align-items-center card bg-dark text-light p-3">
+            <h5 className="text-light">Would you like to buy something?</h5>
+            <a className="btn btn-primary w-50" href="/item-sales">Buy Item</a>
+          </div>
+        </div>
+
+        <div className="col-md-4 d-flex align-items-center justify-content-center py-3">
+          <div className="d-flex flex-column align-items-center card bg-dark text-light p-3">
+            <h5 className="text-light">Would you like to sell something?</h5>
+            <button className="btn btn-success w-50" onClick={() => setIsModalOpen(true)}>Sell Item</button>
+          </div>
         </div>
       </div>
 

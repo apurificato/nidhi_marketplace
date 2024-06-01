@@ -3,6 +3,7 @@ import Button from 'react-bootstrap/Button';
 // import Form from 'react-bootstrap/Form';
 import Modal from 'react-bootstrap/Modal';
 import ProductForm from '../components/ProductForm'
+import ImageSlider from '../components/Carousel';
 
 function Example() {
   const [show, setShow] = useState(false);
@@ -13,11 +14,17 @@ function Example() {
   return (
     <>
     <h1>Want to Sell Something?</h1>
-    <h3>List an Item for Sale on <span className="text-success">OUR_SITE!</span></h3>
+    <h2>You Could List Items Like These...</h2>
+
     <div className="p-5">
-      <Button variant="primary" onClick={handleShow}>
+      <div className="d-flex flex-column align-items-center">
+      <div className="bg-dark text-light p-5 w-50 rounded">
+      <h3 className="pb-3">List an Item for Sale on <span className="text-warning">OUR_SITE!</span></h3>
+      <Button variant="success" onClick={handleShow}>
         List Item Now
       </Button>
+      </div>
+      </div>
 
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
