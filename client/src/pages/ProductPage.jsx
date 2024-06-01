@@ -22,7 +22,7 @@ function ProductPage() {
   console.log(item)
 
   return (
-    <section id="product-page" className="product-page">
+    <section id="product-page" className="container product-page">
       <ProductItem item={item} />
     </section>
   );

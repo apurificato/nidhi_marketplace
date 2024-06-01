@@ -18,11 +18,10 @@ const AuctionImage = ({ imageId, itemName }) => {
 
       {itemImage ? (
         <AdvancedImage
-        className="item-image"
+        className="item-image img-fluid"
           cldImg={itemImage}
           plugins={[responsive(), placeholder({ mode: 'blur' })]}
           alt={itemName}
-          className="img-fluid"
         />
       ) : (
         <img src={placeholderImage} alt={itemName} className="img-fluid" />
