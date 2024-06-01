@@ -487,26 +487,26 @@ section #product-post-form {
 
 // Carousel 
 
-// .carousel-container {
-//   display: flex;
-//   flex-direction: row;
-//   justify-content: center;
-// }
+.carousel-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
 
-// .image-slider-container {
-//   padding: 5%;
-//   width: 80%;
-//   align-items: center;
+.image-slider-container {
+  padding: 5%;
+  width: 100%;
+  align-items: center;
 
-//   img {
-//   width: 70%; 
-//   height: auto;
-//   display: block; 
-//   margin: 0 auto;
-//   border-radius: 20px;
-//   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1), 0 6px 20px rgba(0, 0, 0, 0.1);
-//   }
-// }
+  img {
+  width: 70%; 
+  height: auto;
+  display: block; 
+  margin: 0 auto;
+  border-radius: 20px;
+  // box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1), 0 6px 20px rgba(0, 0, 0, 0.1);
+  }
+}
 
 
 

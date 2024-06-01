@@ -5,10 +5,18 @@ import { GET_USER_DETAILS } from '../graphql/queries';
 import ProductForm from "../components/ProductForm";
 import MiniItem from '../components/MiniItem';
 
+import Button from 'react-bootstrap/Button';
+import Modal from 'react-bootstrap/Modal';
+
+
 function Dashboard() {
   const { user } = useAuth();
   const [userDetails, setUserDetails] = useState(null);
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  // const [isModalOpen, setIsModalOpen] = useState(false);
+  const [show, setShow] = useState(false);
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
 
   const { data, loading, error, refetch } = useQuery(GET_USER_DETAILS, {
     variables: { id: user?.id },
@@ -64,7 +72,9 @@ function Dashboard() {
         <div className="col-md-4 d-flex align-items-center justify-content-center py-3">
           <div className="d-flex flex-column align-items-center card bg-dark text-light p-3">
             <h5 className="text-light">Would you like to sell something?</h5>
-            <button className="btn btn-success w-50" onClick={() => setIsModalOpen(true)}>Sell Item</button>
+            <Button variant="success" onClick={handleShow}>
+            List Item Now
+            </Button>
           </div>
         </div>
       </div>
@@ -124,23 +134,20 @@ function Dashboard() {
         </div>
       </div>
 
-      {isModalOpen && (
-        <div className="modal show d-block" role="dialog">
-          <div className="modal-dialog" role="document">
-            <div className="modal-content">
-              <div className="modal-header">
-                <h5 className="modal-title">Sell Product</h5>
-                <button type="button" className="close" onClick={() => setIsModalOpen(false)}>
-                  <span>&times;</span>
-                </button>
-              </div>
-              <div className="modal-body">
-                <ProductForm refetch={refetch} />
-              </div>
-            </div>
-          </div>
-        </div>
-      )}
+
+      <Modal show={show} onHide={handleClose}>
+        <Modal.Header closeButton>
+          <Modal.Title>List a Product to Sell</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+            <ProductForm className="bg-light"/>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="danger" onClick={handleClose}>
+            Close
+          </Button>
+        </Modal.Footer>
+      </Modal>
     </section>
   );
 }

@@ -16,9 +16,10 @@ function Example() {
     <div className="p-5">
       <h1 className="display-3 py-3">Want to Sell Something?</h1>
       <h2>You Could List Items Like These...</h2>
+      <ImageSlider />
     </div>
 
-    <div className="p-5">
+    <div className="pb-5">
       <div className="d-flex flex-column align-items-center">
         <div className="bg-dark text-light p-5 w-50 rounded">
           <h3 className="pb-3">List an Item for Sale on <span className="text-warning">nidhi</span></h3>
@@ -30,7 +31,7 @@ function Example() {
 
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
-          <Modal.Title>Add a Product</Modal.Title>
+          <Modal.Title>List a Product to Sell</Modal.Title>
         </Modal.Header>
         <Modal.Body>
             <ProductForm className="bg-light"/>
