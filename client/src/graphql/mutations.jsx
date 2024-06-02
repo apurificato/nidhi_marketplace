@@ -38,11 +38,24 @@ export const CREATE_ITEM = gql`
       imageId
       startingBid
       currentBid
+      highBidder {
+        id
+        username
+      }
+      bids {
+        id
+        amount
+        user {
+          id
+          username
+        }
+      }
       seller {
         id
         username
       }
       endTime
+      isCompleted
     }
   }
 `;

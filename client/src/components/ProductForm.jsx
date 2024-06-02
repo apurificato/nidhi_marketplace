@@ -1,9 +1,12 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { CREATE_ITEM } from '../graphql/mutations';
+import { GET_USER_DETAILS, GET_ITEMS } from '../graphql/queries';
 import { useMutation } from '@apollo/client';
 import { useAuth } from '../context/AuthContext';
 import FileUpload from './FileUpload';
+import { useUserData } from '../context/UserDataContext';
+import { useItemsData } from '../context/ItemsContext';
 
 const initialFormState = {
   userId: '',
@@ -13,13 +16,13 @@ const initialFormState = {
   imageId: '' // Add imageId to the form state
 };
 
-function ProductForm({ refetch }) {
+function ProductForm({ handleClose }) {
+  const {userDetails, setUserDetails} = useUserData()
+  const {items, setItems} = useItemsData()
+
   const [formData, setFormData] = useState(initialFormState);
   const { user } = useAuth();
   const navigate = useNavigate();
-
-  const [setShow] = useState(false);
-  const handleClose = () => setShow(false);
 
   useEffect(() => {
     if (user) {
@@ -28,8 +31,37 @@ function ProductForm({ refetch }) {
   }, [user]);
 
   const [createItem] = useMutation(CREATE_ITEM, {
+    update(cache, { data: { createItem } }) {
+      // Update the cache with the new post
+      const { user: cachedUser } = cache.readQuery({
+        query: GET_USER_DETAILS,
+        variables: { id: user.id } // Use user.id from AuthContext
+      });
+
+      console.log(cachedUser)
+      console.log(user)
+
+      cache.writeQuery({
+        query: GET_USER_DETAILS,
+        variables: { id: user.id },
+        data: {
+          user: {
+            ...cachedUser,
+            itemsForSale: [...cachedUser.itemsForSale, createItem]
+          }
+        }
+      });
+      const { user: updatedUser } = cache.readQuery({
+        query: GET_USER_DETAILS,
+        variables: { id: user.id } // Use user.id from AuthContext
+      })
+      setUserDetails(updatedUser)
+      
+      let updatedItems = [...items,createItem]
+      setItems(updatedItems)
+    },
     onCompleted: () => {
-      refetch();
+     
     },
     onError: (error) => {
       console.error('Error creating item:', error);
@@ -60,7 +92,6 @@ function ProductForm({ refetch }) {
           imageId: formData.imageId // Include imageId in the mutation variables
         }
       });
-      refetch();
       console.log('Item created:', data);
       setFormData(initialFormState);
     } catch (error) {
@@ -71,11 +102,11 @@ function ProductForm({ refetch }) {
 
   return (
     <section id="product-post-form" >
-      
+
       <form onSubmit={handleSubmit} className="d-flex align-items-center justify-content-center flex-column">
         <div className='p-2'>
           <input
-          className="bg-dark-subtle border-0 rounded p-3 "
+            className="bg-dark-subtle border-0 rounded p-3 "
             type="text"
             id="name"
             name="name"
@@ -87,7 +118,7 @@ function ProductForm({ refetch }) {
         </div>
         <div className='p-2'>
           <textarea
-          className="text-bg-dark border-0 rounded p-3 color-light"
+            className="text-bg-dark border-0 rounded p-3 color-light"
             id="description"
             name="description"
             placeholder="description"
@@ -100,7 +131,7 @@ function ProductForm({ refetch }) {
         <div className='p-2'>
 
           <input
-          className="bg-dark-subtle border-0 rounded p-3"
+            className="bg-dark-subtle border-0 rounded p-3"
             type="number"
             id="startingBid"
             name="startingBid"
@@ -110,7 +141,7 @@ function ProductForm({ refetch }) {
             required
           />
         </div>
-        <FileUpload setImageId={handleImageUpload}  />
+        <FileUpload setImageId={handleImageUpload} />
         <input type="hidden" name="userId" value={formData.userId} />
         <button type="submit" onClick={handleClose}>Submit</button>
       </form>
@@ -119,10 +150,4 @@ function ProductForm({ refetch }) {
 }
 
 export default ProductForm;
-
-/* <label htmlFor="name">Product Name:</label>
-
-<label htmlFor="description">Description:</label>
-
-<label htmlFor="startingBid">Starting Bid:</label> */
 

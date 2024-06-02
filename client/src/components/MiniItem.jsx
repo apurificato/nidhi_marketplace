@@ -15,12 +15,12 @@ const MiniItem = ({ item }) => {
 
     return (
 
-        <div className="card mb-3 mini-item bg-dark text-light">
+        <div className="card h-100 mb-3 mini-item bg-dark text-light">
             <div className="card-header d-flex justify-content-between align-items-center">
                 <h5 className="mb-0 text-light font-weight-bold">{item.name}</h5>
                 <Link to={`/products/${item.id}`} className="btn btn-primary">View Details</Link>
             </div>
-            <div className="card-body">
+            <div className="card-body d-flex flex-column justify-content-between">
                 <div className="mb-3">
                     <AuctionImage imageId={item.imageId} itemName={item.name} />
                 </div>

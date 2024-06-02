@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useAuth } from '../context/AuthContext';
+import { useUserData } from '../context/UserDataContext';
 import { useQuery } from '@apollo/client';
 import { GET_USER_DETAILS } from '../graphql/queries';
 import ProductForm from "../components/ProductForm";
@@ -11,28 +12,29 @@ import Modal from 'react-bootstrap/Modal';
 
 function Dashboard() {
   const { user } = useAuth();
-  const [userDetails, setUserDetails] = useState(null);
+  const {userDetails, setUserDetails, loading, error} = useUserData()
+  // const [userDetails, setUserDetails] = useState(null);
   // const [isModalOpen, setIsModalOpen] = useState(false);
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
-  const { data, loading, error, refetch } = useQuery(GET_USER_DETAILS, {
-    variables: { id: user?.id },
-    skip: !user,
-    onCompleted: (data) => {
-      if (data?.user) {
-        setUserDetails(data.user);
-      }
-    }
-  });
+  // const { data, loading, error} = useQuery(GET_USER_DETAILS, {
+  //   variables: { id: user?.id },
+  //   skip: !user,
+  //   onCompleted: (data) => {
+  //     if (data?.user) {
+  //       setUserDetails(data.user);
+  //     }
+  //   }
+  // });
 
-  useEffect(() => {
-    if (user && !userDetails) {
-      setUserDetails(null);
-    }
-  }, [user]);
+  // useEffect(() => {
+  //   if (user && !userDetails) {
+  //     setUserDetails(null);
+  //   }
+  // }, [user]);
 
   const getHighestBids = (bids) => {
     const highestBids = {};
@@ -88,7 +90,7 @@ function Dashboard() {
               {userDetails.itemsForSale.map(item => (
 
                 <li key={item.id} className="mb-3">
-                  <MiniItem item={item} refetch={refetch} />
+                  <MiniItem item={item} />
                 </li>
 
               ))}
@@ -105,7 +107,7 @@ function Dashboard() {
             <ul className="list-unstyled">
               {highestBids.filter(bid => !bid.item.isCompleted).map(bid => (
                 <li key={bid.item.id} className="mb-3">
-                  <MiniItem item={bid.item} refetch={refetch} />
+                  <MiniItem item={bid.item}  />
                 </li>
 
               ))}
@@ -124,7 +126,7 @@ function Dashboard() {
                 .filter(item => item.isCompleted && item.highBidder.id === user.id)
                 .map(item => (
                   <li key={item.id} className="mb-3">
-                    <MiniItem item={item} refetch={refetch} />
+                    <MiniItem item={item}  />
                   </li>
                 ))}
             </ul>
@@ -140,7 +142,7 @@ function Dashboard() {
           <Modal.Title>List a Product to Sell</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-            <ProductForm className="bg-light"/>
+            <ProductForm setUserDetails={setUserDetails} handleClose ={handleClose} className="bg-light"/>
         </Modal.Body>
         <Modal.Footer>
           <Button variant="danger" onClick={handleClose}>

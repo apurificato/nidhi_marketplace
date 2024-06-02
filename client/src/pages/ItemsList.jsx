@@ -2,9 +2,11 @@ import React, { useState } from 'react';
 import { useQuery } from '@apollo/client';
 import { GET_ITEMS } from '../graphql/queries';
 import MiniItem from '../components/MiniItem';
+import { useItemsData } from '../context/ItemsContext';
 
 const ItemList = () => {
-  const { data, loading, error, refetch } = useQuery(GET_ITEMS);
+  const {items, setItems, loading, error } = useItemsData()
+  // const { data, loading, error} = useQuery(GET_ITEMS);
   const [minPrice, setMinPrice] = useState('');
   const [maxPrice, setMaxPrice] = useState('');
   const [searchTerm, setSearchTerm] = useState('');
@@ -23,8 +25,9 @@ const ItemList = () => {
   const handleSearchTermChange = (event) => {
     setSearchTerm(event.target.value);
   };
+  console.log(items)
 
-  const filteredItems = data.items.filter(item => {
+  const filteredItems = items.filter(item => {
     const matchesSearchTerm = item.name.toLowerCase().includes(searchTerm.toLowerCase());
     const matchesMinPrice = minPrice === '' || item.currentBid >= parseFloat(minPrice);
     const matchesMaxPrice = maxPrice === '' || item.currentBid <= parseFloat(maxPrice);
@@ -70,7 +73,7 @@ const ItemList = () => {
       <div className="row">
         {filteredItems.map(item => (
           <div key={item.id} className="col-lg-4 col-md-6 mb-4">
-            <MiniItem item={item} refetch={refetch} />
+            <MiniItem item={item} />
           </div>
         ))}
       </div>
