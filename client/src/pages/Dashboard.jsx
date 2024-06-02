@@ -83,7 +83,7 @@ function Dashboard() {
 
 
       <div className="row">
-        <div className="col-lg-4 mb-4">
+        <div className="col-lg-4 mb-4 sell-column-bg">
           <h2>Selling</h2>
           {userDetails?.itemsForSale.length ? (
             <ul className="list-unstyled">
@@ -100,7 +100,7 @@ function Dashboard() {
           )}
         </div>
 
-        <div className="col-lg-4 mb-4">
+        <div className="col-lg-4 mb-4 bid-column-bg">
           <h2>Bidding</h2>
           {highestBids.length ? (
 
@@ -117,7 +117,7 @@ function Dashboard() {
           )}
         </div>
 
-        <div className="col-lg-4 mb-4">
+        <div className="col-lg-4 mb-4 win-column-bg">
           <h2>Winning</h2>
           {userDetails?.itemsWon
                 .filter(item => item.isCompleted && item.highBidder.id === user.id).length ? (

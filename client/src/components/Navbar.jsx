@@ -37,7 +37,7 @@ function Navbar() {
                     <NavLink to="/dashboard" className="nav-link" onClick={toggleMenu}>Account</NavLink>
                   </li>
                   <li className="nav-item">
-                    <button className="btn btn-dark text-light" onClick={() => { logout(() => toggleMenu()); }}>Logout</button>
+                    <button className="btn btn-dark" onClick={() => { logout(() => toggleMenu()); }}>Logout</button>
                   </li>
                 </>
               ) : (
