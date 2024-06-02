@@ -6,6 +6,8 @@ Welcome to nidhi marketplace, a Full-Stack website application that mimics other
 ## Table of Contents
 [Features](#features) | [Installation](#installation) | [Project Structure](#project-structure) | [Usage](#usage) | [Technologies](#technologies) | [Credits](#credits) | [Contributions](#contributions) | [License](#license) | [Questions](#questions)
 
+![nidhi_marketplace-home-page-screenshot](https://github.com/apurificato/nidhi_marketplace/assets/161912493/366537e5-7df4-49e6-9bfe-21092c36b81d)
+
 ## Features
 This website project was created to meet the following criteria, as well as enable the following features:
 1. User account creation and registration,
