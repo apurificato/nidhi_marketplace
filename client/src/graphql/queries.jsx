@@ -152,6 +152,7 @@ export const GET_ITEMS = gql`
       description
       startingBid
       currentBid
+      endTime
       imageId
       seller {
         id
@@ -161,7 +162,14 @@ export const GET_ITEMS = gql`
         id
         username
       }
-      endTime
+      bids {
+        id
+        amount
+        user {
+          id
+          username
+        }
+      }
     }
   }
 `;
