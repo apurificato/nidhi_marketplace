@@ -86,15 +86,20 @@ header {
 
 
 header nav a:hover {
-  color: #00d8ff;
+  color: gold !important;
 }
 
 header nav a.active {
-  color: #00d8ff;
+  color: gold !important;
 }
 
 header nav button {
   margin-left: 20px;
+}
+
+.nav-item button:hover {
+  border-color: goldenrod;
+  color: goldenrod;
 }
 
 /* HERO SECTION (Custom Styles) */
@@ -153,10 +158,12 @@ button {
   cursor: pointer;
   transition: border-color 0.25s;
 }
+
 button:hover {
-  border-color: #00d8ff;
-  color: #00d8ff;
+  border-color: goldenrod;
+  color: goldenrod;
 }
+
 button:focus,
 button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
@@ -199,8 +206,6 @@ button:focus-visible {
   width: 450px;
   display: flex;
   flex-direction: column;
-  /* justify-content: center; */
-  /* align-items: center; */
   padding: 1em;
   border: 1px solid #213547;
   border-radius: 1em;
@@ -277,7 +282,7 @@ footer .brand {
   height: 70px;
 }
 
-// NAVBAR
+// NAVBAR CUSTOM STYLES
 
 $primary-color: #977cef;
 $text-color: #fff;
@@ -386,12 +391,12 @@ $breakpoint: 768px;
     }
 
     .navbar.open {
-      max-height: 300px; // Adjust as needed for content
+      max-height: 300px;
     }
   }
 }
 
-
+// DASHBOARD PAGE CUSTOM STYLES
 
 .dashboard {
   display: flex;
@@ -421,7 +426,6 @@ $breakpoint: 768px;
   }
   display: flex;
   flex-direction: column;
-  // align-items: center;
 }
 
 .user-info {
@@ -430,6 +434,21 @@ $breakpoint: 768px;
   border-radius: 10px;
   padding: 20px;
   width: 100%;
+}
+
+.sell-column-bg {
+  background-color: #f6f3ff;
+  border-radius: 5px;
+}
+
+// .bid-column-bg {
+//   background-color: #fdffe1;
+//   border-radius: 5px;
+// }
+
+.win-column-bg {
+  background-color: #f3fff7;
+  border-radius: 5px;
 }
 
 
@@ -485,8 +504,8 @@ section #product-post-form {
   justify-content: space-around;
 }
 
-// Carousel 
 
+// Carousel Custom Styling
 .carousel-container {
   display: flex;
   flex-direction: row;
@@ -504,15 +523,11 @@ section #product-post-form {
   display: block; 
   margin: 0 auto;
   border-radius: 20px;
-  // box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1), 0 6px 20px rgba(0, 0, 0, 0.1);
   }
 }
 
 
-
-
-// for wills item component
-
+// Item Component Custom Styles
 .item {
   border: 1px solid #ccc;
   padding: 10px;
@@ -551,34 +566,16 @@ section #product-post-form {
  border-radius: 15px;
 }
 
-// .mini-card {
-//   max-width: 200px;
-// }
-
 .mini-item-image {
   max-height: 300px;
   border-radius: 15px;
  }
 
-//  .mini-item-image img {
-//   width: 60%;
-//   height: auto;
-  
-// }
-
 .mini-item-details {
-  
   p {
     font-size: 0.8rem;
   }
 }
-
-
-// .item-image img {
-//   width: 50%;
-//   height: auto;
-  
-// }
 
 .item-actions {
   flex: 0 0 50px;
@@ -587,55 +584,14 @@ section #product-post-form {
 }
 
 .item-actions button {
-  margin-top: 10px; /* Add some space between buttons */
+  margin-top: 10px;
 }
 
 .mini-btn {
-  
   p {
     font-size: 0.5rem;
   }
 }
-
-// modal
-
-/* Modal.css */
-// .modal {
-//   display: flex;
-//   justify-content: center;
-//   align-items: center;
-//   position: fixed;
-//   z-index: 1;
-//   left: 0;
-//   top: 0;
-//   width: 100%;
-//   height: 100%;
-//   overflow: auto;
-//   background-color: rgba(0, 0, 0, 0.5);
-// }
-
-// .modal-content {
-//   background-color: #fefefe;
-//   margin: auto;
-//   padding: 20px;
-//   border: 1px solid #888;
-//   width: 80%;
-//   max-width: 600px;
-// }
-
-// .close {
-//   color: #aaa;
-//   float: right;
-//   font-size: 28px;
-//   font-weight: bold;
-// }
-
-// .close:hover,
-// .close:focus {
-//   color: black;
-//   text-decoration: none;
-//   cursor: pointer;
-// }
 
 .mini-item {
   min-width: 300px;
