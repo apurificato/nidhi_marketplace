@@ -4,9 +4,12 @@ Welcome to nidhi marketplace, a Full-Stack website application that mimics other
 ![GitHub license](https://img.shields.io/badge/License-MIT-brightgreen.svg)
 
 ## Table of Contents
-[Features](#features) | [Installation](#installation) | [Project Structure](#project-structure) | [Usage](#usage) | [Technologies](#technologies) | [Credits](#credits) | [Contributions](#contributions) | [License](#license) | [Questions](#questions)
+[Live Demo](#live-demo) | [Features](#features) | [Installation](#installation) | [Project Structure](#project-structure) | [Usage](#usage) | [Technologies](#technologies) | [Credits](#credits) | [Contributions](#contributions) | [License](#license) | [Questions](#questions)
 
 ![nidhi_marketplace-home-page-screenshot](https://github.com/apurificato/nidhi_marketplace/assets/161912493/366537e5-7df4-49e6-9bfe-21092c36b81d)
+
+## Live Demo
+Live URL: https://bidding-site-o6l3.onrender.com/
 
 ## Features
 This website project was created to meet the following criteria, as well as enable the following features:
