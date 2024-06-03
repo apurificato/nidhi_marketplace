@@ -154,6 +154,7 @@ export const GET_ITEMS = gql`
       currentBid
       endTime
       imageId
+      isCompleted
       seller {
         id
         username
@@ -184,6 +185,7 @@ export const GET_ITEM = gql`
       startingBid
       currentBid
       imageId
+      isCompleted
       seller {
         id
         username

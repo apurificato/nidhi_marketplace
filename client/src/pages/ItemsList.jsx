@@ -26,12 +26,13 @@ const ItemList = () => {
     setSearchTerm(event.target.value);
   };
   console.log(items)
-
+ 
   const filteredItems = items.filter(item => {
+    const isActive = !item.isCompleted
     const matchesSearchTerm = item.name.toLowerCase().includes(searchTerm.toLowerCase());
     const matchesMinPrice = minPrice === '' || item.currentBid >= parseFloat(minPrice);
     const matchesMaxPrice = maxPrice === '' || item.currentBid <= parseFloat(maxPrice);
-    return matchesSearchTerm && matchesMinPrice && matchesMaxPrice;
+    return isActive && matchesSearchTerm && matchesMinPrice && matchesMaxPrice;
   });
 
   return (
